@@ -1,0 +1,233 @@
+{
+  "main": {
+    "id": "c271e288d6e12db3",
+    "type": "split",
+    "children": [
+      {
+        "id": "f5057991e5ffcfc2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cdb0f0eff903d7a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PNPT/PEH/AD.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AD"
+            }
+          },
+          {
+            "id": "ef3170f7a098f91e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PNPT/PEH/WEB BUGS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "WEB BUGS"
+            }
+          },
+          {
+            "id": "a16f47a56c426531",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "IAM.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "IAM"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "27fda0731313f314",
+    "type": "split",
+    "children": [
+      {
+        "id": "53541568de7bd983",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb06b37ea8fccb55",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5c9c5de95f1f612f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "776018a22b878c37",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "right": {
+    "id": "e282f1fb4fe71bf1",
+    "type": "split",
+    "children": [
+      {
+        "id": "8550b468c05ea74f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a3adb17daaa7fe39",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "IAM.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for IAM"
+            }
+          },
+          {
+            "id": "dbb4a5e1aeb49c5d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "07cd8bc53c35e63f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "337168361f978fbb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "a16f47a56c426531",
+  "lastOpenFiles": [
+    "PNPT/PEH/WEB BUGS.md",
+    "PNPT/PEH/AD.md",
+    "IAM.md",
+    "PNPT/PEH/capstone/Blackpearl.md",
+    "PNPT/Commands.md",
+    "PNPT/PEH/capstone/Butler.md",
+    "SilberPlatter Walkthrough2.md",
+    "PNPT/Linux PrivEsc.md",
+    "CCDC/quals/Active Directory.md",
+    "Pasted image 20250430142458.png",
+    "Pasted image 20250430142413.png",
+    "Pasted image 20250430142408.png",
+    "README.md",
+    "Pasted image 20250430115017.png",
+    "Pasted image 20250430112926.png",
+    "Pasted image 20250430094337.png",
+    "Pasted image 20250430094006.png",
+    "Pasted image 20250430093930.png",
+    "Pasted image 20250430093906.png",
+    "Pasted image 20250429220425.png",
+    "CCDC/quals/Main Info.md",
+    "Untitled.md",
+    "Class notes.md",
+    "Other Boxes/Silver Platter.md",
+    "Other Boxes",
+    "PNPT/PEH/capstone",
+    "PNPT/PEH",
+    "CCDC/rmccdc",
+    "CCDC/quals",
+    "CCDC",
+    "PNPT"
+  ]
+}
