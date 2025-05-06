@@ -49,6 +49,19 @@ net user <user> <pass> /add
 ```
 ## Pivoting
 
+SSH proxy through a compromised machine
+```
+ssh  -f -N -D <Proxy Port> -i pivot <root user>@<proxy ip> 
+```
+Then run "proxychains" before commands you want to proxy like
+```
+proxychains nmap -sV <target ip>
+```
+Other tools that can be used are [sshuttle](https://github.com/sshuttle/sshuttle?tab=readme-ov-file) and [chisel](https://github.com/jpillora/chisel)
+```
+sshuttle -r <root>@<proxy ip> <new network>/<CIDR> --ssh-cmd "ssh -i proxy"
+```
+
 ## Linux Privilege Escalation 
 Identify Weakness
 Wanna find bad SUID permissions?
