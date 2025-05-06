@@ -371,13 +371,22 @@ In Metasploit use smb_enum_gpp
 # POST-DOMAIN COMPROMISE 
 ## NTDS.dit
 *This is a AD database for user, group & password hashes*
+Run the secretsdump script on the DC 
+*Note: Excel can efficiently separate nt:lm and usernames from the hashlist*
 
-
+```
+hashcat -m 1000 <hashes.txt> <wordlist>
+```
 ## Golden Ticket
-
+*Who wants access to a chocolate factory when you can control any machine on the domain*
+You need these to generate a golden ticket
+	1. SID
+	2. krbtgt hash
 ### ZeroLogon
+*Probably don't run it, just scan for it*
 
 ### PrintNightmare
+*Probably don't run it, just scan for it*
 
 
 
