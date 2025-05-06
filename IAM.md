@@ -41,3 +41,4 @@ An Active Directory OU is an organizational Unit
 
 The AD, SIS, and Workday may have user info, but the **User Store** itself is the **Source of Truth** 
 
+## Identity Provider
