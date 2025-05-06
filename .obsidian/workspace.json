@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "35c7e840342d9010",
+            "id": "7f7b1fff7ca5a100",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -35,8 +35,7 @@
               "title": "Tradecraft"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -182,18 +181,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "35c7e840342d9010",
+  "active": "cdb0f0eff903d7a9",
   "lastOpenFiles": [
+    "Pasted image 20250506150842.png",
+    "Pasted image 20250506150810.png",
+    "PNPT/Tradecraft.md",
+    "test.md",
     "PNPT/PEH/AD.md",
+    "PNPT/PEH/Recon.md",
+    "PNPT/PEH/capstone/Blackpearl.md",
+    "PNPT/PEH/capstone/Butler.md",
     "Class notes.md",
     "PNPT/PEH/WEB BUGS.md",
     "IAM.md",
     "PNPT/Active Directory Security.md",
-    "PNPT/Tradecraft.md",
     "PNPT/Linux PrivEsc.md",
-    "Untitled.md",
-    "PNPT/PEH/capstone/Butler.md",
-    "PNPT/PEH/capstone/Blackpearl.md",
     "Other Boxes/Silver Platter.md",
     "CCDC/quals/image.png",
     "CCDC/quals/Main Info.md",
@@ -208,7 +210,6 @@
     "Pasted image 20250430094337.png",
     "Pasted image 20250430094006.png",
     "Pasted image 20250430093930.png",
-    "Pasted image 20250430093906.png",
     "Other Boxes",
     "PNPT/PEH/capstone",
     "PNPT/PEH",
