@@ -63,8 +63,7 @@
               "title": "Tradecraft"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -121,8 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "e282f1fb4fe71bf1",
@@ -210,13 +208,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "48c5acba634e82bc",
+  "active": "dc5a7e76c171d582",
   "lastOpenFiles": [
-    "PNPT/PEH/AD.md",
     "PNPT/Tradecraft.md",
+    "cheatsheet-using-crackmapexec.pdf",
     "PNPT/PEH/Recon.md",
     "PNPT/PEH/WEB BUGS.md",
+    "cheatsheet-using-the-metasploit-framework.pdf",
+    "cheatsheet-sql-injection-fundamentals.pdf",
+    "cheatsheet-file-inclusion.pdf",
     "Pasted image 20250508181510.png",
+    "cheatsheet-file-transfers.pdf",
+    "PNPT/PEH/AD.md",
+    "AD_cheatsheet.jpg",
     "Pasted image 20250508154015.png",
     "Pasted image 20250508153948.png",
     "Pasted image 20250508153934.png",
@@ -225,7 +229,6 @@
     "Pasted image 20250508151632.png",
     "Pasted image 20250508151620.png",
     "Pasted image 20250508151445.png",
-    "Pasted image 20250508151416.png",
     "Notes.md",
     "Other Boxes/Silver Platter.md",
     "PNPT/PEH/Heath Subdomain Script.md",
@@ -246,8 +249,6 @@
     "PNPT/PEH/capstone",
     "PNPT/PEH",
     "CCDC/rmccdc",
-    "CCDC/quals",
-    "CCDC",
-    "PNPT"
+    "CCDC/quals"
   ]
 }

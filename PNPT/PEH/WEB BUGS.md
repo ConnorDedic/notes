@@ -27,6 +27,8 @@ Save a HTTP Post request with the query as a .txt
 ```
 sqlmap -r <request file>
 ```
+![[../../cheatsheet-sql-injection-fundamentals.pdf]]
+
 
 ## Cross Site Scripting (XSS)
 ## Command Injection
@@ -55,6 +57,7 @@ Now lets look at more server side techniques.
 
 At the top of a file is metadata. You can see this metadata when you cat the file into the terminal. If the server authz's the file like this, then you will need to use a file matching the type you want. Send it, and capture the request in burp. Then clear out unneeded parts of the spoofed file-type and then insert the payload directly into it in burp.
 
+![[../../cheatsheet-file-inclusion.pdf]]
 
 ## AUTHN Attacks
 ## External Entities Injection (XXE)

