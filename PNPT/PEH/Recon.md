@@ -88,6 +88,61 @@ FFUF
 ```
 ffuf -c -w <wordlist> -u <url>/FUZZ
 ```
+Note that this removes file size exact match 
+```
+-fs <bytes>
+```
+
 - BurpSuite
 - ZAP
 - Wappalyzer
+
+**Assetfinder**
+[[Heath Subdomain Script]]
+Install
+```
+go get -u github.com/tomnomnom/assetfinder
+```
+Show subdomains & related
+```
+assetfinder <domain>
+```
+More Strict
+```
+assetfinder --subs-only <domain>
+```
+**Amass**
+[Github](https://github.com/owasp-amass/amass)
+[[Heath Subdomain Script]]
+
+**HTTProbe**
+*Use to identify active subdomains*
+[[Heath Subdomain Script]]
+```
+cat <domain list> | httprobe
+```
+```
+cat <domain list> | httprobe -s -p https:443
+```
+```
+cat <domain list> | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443'
+```
+**Want to find cool webpages?**
+```
+cat <domain wordlist> | grep dev
+cat <domain wordlist> | grep test
+cat <domain wordlist> | grep stag
+cat <domain wordlist> | grep admin
+```
+**GoWittness**
+*Takes screenshots of web pages*
+```
+go get -u https://github.com/sensepost/gowitness.git
+```
+Scan one webpage
+```
+gowittness single <url>
+```
+**MISC**
+[BB Methodology](https://www.youtube.com/watch?v=uKWu6yhnhbQ)
+[Recon Playlist](https://www.youtube.com/watch?v=MIujSpuDtFY&list=PLKAaMVNxvLmAkqBkzFaOxqs3L66z2n8LA)
