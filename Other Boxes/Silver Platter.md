@@ -1,4 +1,4 @@
-Target: 10.10.44.180
+	Target: 10.10.44.180
 Machine type: Linux (Ubuntu 3)
 
 ports found open

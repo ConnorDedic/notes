@@ -6,6 +6,8 @@ AuthZ - Authorization
 
 Is a Credit Card AuthN or AuthZ
 
+
+
 Both
 
 Kiosk - any user can use with no privilege
@@ -32,6 +34,8 @@ An AD is a object storage for users, machines, and services
 Domain User - Stored in the AD
 Local User - Stored locally
 
+---
+
 # Governance
 
 ### User Lifecycle Management (ULC)
@@ -42,3 +46,12 @@ An Active Directory OU is an organizational Unit
 The AD, SIS, and Workday may have user info, but the **User Store** itself is the **Source of Truth** 
 
 ## Identity Provider
+
+[link](http://sp2.westus2.cloudapp.azure.com)
+
+---
+## User Stores
+LDAP Directory
+Keychain
+Active Directory
+Windows Local User

