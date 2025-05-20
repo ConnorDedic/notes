@@ -16,7 +16,7 @@ Unique Sign-On - Only every use separate U:P combos
 
 LSASS - Local Security Authority Subsystem Service
 
-NTLM = New Technology LAN Manager
+NTLM - New Technology LAN Manager
 
 Kerberos - King
 

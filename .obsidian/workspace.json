@@ -20,6 +20,20 @@
               "icon": "lucide-file",
               "title": "WEB ATTACKS"
             }
+          },
+          {
+            "id": "662f9522bf189633",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "IAM.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "IAM"
+            }
           }
         ]
       }
@@ -169,8 +183,10 @@
   },
   "active": "eabc265def4fb7d0",
   "lastOpenFiles": [
-    "Untitled 2.md",
+    "IAM.md",
     "PNPT/PEH/WEB ATTACKS.md",
+    "Untitled 3.md",
+    "Untitled 2.md",
     "PNPT SQLi Challenge.md",
     "PNPT/Tradecraft.md",
     "Pasted image 20250515193029.png",
@@ -180,7 +196,6 @@
     "Other Boxes/Silver Platter.md",
     "dsadas.md",
     "PNPT/PEH/Recon.md",
-    "IAM.md",
     "PNPT/PEH/AD.md",
     "Pasted image 20250513125624.png",
     "Pasted image 20250513125617.png",
