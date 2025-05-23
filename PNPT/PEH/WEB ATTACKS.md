@@ -1,4 +1,4 @@
-## SQL Injection (SQLi)
+1## SQL Injection (SQLi)
 *Lots of webpages store data in SQL databases. If they don't sanitize user inputs, then it is possible to query the database from an input field *
 
 Connect to SQL
