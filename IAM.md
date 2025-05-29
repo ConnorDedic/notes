@@ -55,3 +55,17 @@ LDAP Directory
 Keychain
 Active Directory
 Windows Local User
+
+
+___
+**Kerberos**
+- WS-FED can be used for multi-domain authN
+- 
+
+**SAML**
+- Follows Kerberos principles
+- Uses bindings
+
+**InCommon**
+*IAM research and learning*
+

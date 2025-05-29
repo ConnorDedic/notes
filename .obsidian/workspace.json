@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "e282f1fb4fe71bf1",
@@ -169,10 +168,15 @@
   },
   "active": "eabc265def4fb7d0",
   "lastOpenFiles": [
+    "Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf",
     "PNPT/Tradecraft.md",
-    "PNPT/PEH/WEB ATTACKS.md",
-    "Untitled 4.md",
     "IAM.md",
+    "PNPT/PEH/WEB ATTACKS.md",
+    "PNPT/PEH/Recon.md",
+    "PNPT/PEH/AD.md",
+    "PNPT/Active Directory Security.md",
+    "Untitled 5.md",
+    "Untitled 4.md",
     "Untitled 3.md",
     "Untitled 2.md",
     "PNPT SQLi Challenge.md",
@@ -182,8 +186,6 @@
     "Pasted image 20250515150317.png",
     "Other Boxes/Silver Platter.md",
     "dsadas.md",
-    "PNPT/PEH/Recon.md",
-    "PNPT/PEH/AD.md",
     "Pasted image 20250513125624.png",
     "Pasted image 20250513125617.png",
     "Pasted image 20250513110359.png",
@@ -207,11 +209,8 @@
     "PNPT/PEH/capstone/Blackpearl.md",
     "PNPT/PEH/capstone/Butler.md",
     "Class notes.md",
-    "PNPT/Active Directory Security.md",
     "PNPT/Linux PrivEsc.md",
     "CCDC/quals/Main Info.md",
-    "PNPT/Commands.md",
-    "SilberPlatter Walkthrough2.md",
     "Other Boxes",
     "PNPT/PEH/capstone",
     "PNPT/PEH"
