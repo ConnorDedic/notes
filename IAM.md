@@ -67,5 +67,12 @@ ___
 - Uses bindings
 
 **InCommon**
-*IAM research and learning*
+*IAM research and federation*
+
+Eduroam 
+*This is a federation to allow university personnel to authN on other uni's networks*
+
+
+
+
 

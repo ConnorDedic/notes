@@ -20,37 +20,8 @@
               "icon": "lucide-file",
               "title": "WEB ATTACKS"
             }
-          },
-          {
-            "id": "212cf3d2f80ee01f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "dcd9f86f93f3f065",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "XSS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "XSS"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -195,18 +166,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "212cf3d2f80ee01f",
+  "active": "cb06b37ea8fccb55",
   "lastOpenFiles": [
+    "PNPT/PEH/WEB ATTACKS.md",
+    "XSS.md",
+    "Pasted image 20250603093853.png",
+    "Pasted image 20250603093610.png",
+    "IAM.md",
+    "README.md",
     "PNPT/PEH/Heath Subdomain Script.md",
     "PNPT/PEH/AD.md",
     "PNPT/PEH/capstone/Butler.md",
-    "PNPT/PEH/WEB ATTACKS.md",
-    "README.md",
     "Untitled 6.md",
-    "XSS.md",
     "Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf",
     "PNPT/Tradecraft.md",
-    "IAM.md",
     "PNPT/PEH/Recon.md",
     "PNPT/Active Directory Security.md",
     "Untitled 5.md",
@@ -233,14 +206,11 @@
     "Pasted image 20250508181510.png",
     "cheatsheet-file-transfers.pdf",
     "AD_cheatsheet.jpg",
-    "Pasted image 20250508154015.png",
-    "Pasted image 20250508153948.png",
     "Notes.md",
     "Heath's Subdomain.md",
     "Heath's Script.md",
     "test.md",
     "PNPT/PEH/capstone/Blackpearl.md",
-    "Class notes.md",
     "Other Boxes",
     "PNPT/PEH/capstone"
   ]
