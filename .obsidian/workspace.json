@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "eabc265def4fb7d0",
+            "id": "6365dcbab04ff92d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PNPT/PEH/WEB ATTACKS.md",
+                "file": "PNPT/Movement.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WEB ATTACKS"
+              "title": "Movement"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "e282f1fb4fe71bf1",
@@ -166,20 +167,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cb06b37ea8fccb55",
+  "active": "6365dcbab04ff92d",
   "lastOpenFiles": [
+    "Pasted image 20250604155036.png",
+    "IAM.md",
+    "PNPT/Movement.md",
+    "PNPT/Tradecraft.md",
+    "File Transferring.md",
     "PNPT/PEH/WEB ATTACKS.md",
     "XSS.md",
     "Pasted image 20250603093853.png",
     "Pasted image 20250603093610.png",
-    "IAM.md",
     "README.md",
     "PNPT/PEH/Heath Subdomain Script.md",
     "PNPT/PEH/AD.md",
     "PNPT/PEH/capstone/Butler.md",
     "Untitled 6.md",
     "Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf",
-    "PNPT/Tradecraft.md",
     "PNPT/PEH/Recon.md",
     "PNPT/Active Directory Security.md",
     "Untitled 5.md",
@@ -209,8 +213,6 @@
     "Notes.md",
     "Heath's Subdomain.md",
     "Heath's Script.md",
-    "test.md",
-    "PNPT/PEH/capstone/Blackpearl.md",
     "Other Boxes",
     "PNPT/PEH/capstone"
   ]
