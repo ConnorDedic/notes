@@ -1,4 +1,8 @@
 # Network Scanning
+*Just use [autorecon](https://github.com/Tib3rius/AutoRecon.git)!!*
+
+
+
 ### NMAP
 Host Discovery
 ```

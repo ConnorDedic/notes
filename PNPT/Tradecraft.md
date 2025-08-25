@@ -38,16 +38,27 @@ literally stupid, but this dumb trick works for old sudo
 sudo sudo /bin/sh
 ```
 
-use ``` 
-grep -R .```
-to display everything in folder
+use 
+``` 
+grep -R 
 ```
+to display everything in folder
 Always go for a tty shell if you have a worse shell if possible
 
 use a command like [(see here)](https://wiki.zacheller.dev/pentest/privilege-escalation/spawning-a-tty-shell)
 ```
 python -c 'import pty; pty.spawn("/bin/sh")'
 ```
+Use `getcap` to view the capabilities of binaries. 
+```
+getcap -r / 2>/dev/null
+```
+Look for `cap_sys_admin, cap_setuid, or cap_setpcap`
+
+Ex.
+![[../Pasted image 20250725115858.png]]
+
+
 
 ## Windows Privilege Escalation
 to grab a file to a windows computer 
@@ -118,6 +129,20 @@ Google Advanced Search
 
 
 ## MISC
+**List of statistically likely names**
+```
+git clone https://github.com/insidetrust/statistically-likely-usernames.git
+```
+Tips from the github
+
+If this isn't sufficient (and it won't be in some cases, expect that!) the base-lists can be manipulated and combined in a wide variety of ways. For example if a pentester uses Foca, or similar, and identifies that the username format of an organisation is `j_smith` and wants 10,000 guesses (with which to try "Password1", or whatever) the base-lists can be modified as follows:
+
+`head -n 10000 j.smith-x100000 | tr "\." "_" > usernames.txt`
+
+Altertatively; if the username would be `jwilliams` , but is always truncated to 7 characters, such as `jwillia`:
+
+`head -n 10000 j.smith-x100000 | tr -d "." | cut -c1-7 | awk '!x[$0]++' > usernames.txt`
+Don't forget to remove duplicates
 
 **AI DAN**
 ```prompt

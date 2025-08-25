@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "94f61c143f7b0eb8",
+        "id": "ebee279603fce159",
         "type": "tabs",
         "children": [
           {
-            "id": "5ec8e56c4bf4467f",
+            "id": "937fd114e03d82cc",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,20 +22,21 @@
             }
           },
           {
-            "id": "2dcccadf6cd6d834",
+            "id": "3883846b1e9fbc36",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Untitled 1.md",
+                "file": "PNPT/Tradecraft.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Untitled 1"
+              "title": "Tradecraft"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -88,11 +89,13 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "e282f1fb4fe71bf1",
@@ -172,6 +175,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -180,52 +184,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5ec8e56c4bf4467f",
+  "active": "3883846b1e9fbc36",
   "lastOpenFiles": [
-    "PNPT/Active Directory Security.md",
-    "PNPT/Movement.md",
     "PNPT/PEH/AD.md",
+    "PNPT/PEH/WEB ATTACKS.md",
+    "Untitled 2.md",
+    "PNPT/PEH/Recon.md",
+    "PNPT/Tradecraft.md",
+    "adas.md",
+    "PNPT/Windows PrivEsc.md",
+    "Pasted image 20250807165507.png",
+    "Pasted image 20250807160732.png",
+    "Pasted image 20250807160630.png",
+    "Pasted image 20250807152822.png",
+    "Pasted image 20250807102431.png",
+    "Pasted image 20250807102352.png",
+    "Pasted image 20250801205643.png",
+    "Pasted image 20250801204232.png",
+    "Pasted image 20250801195709.png",
+    "Pasted image 20250731204743.png",
+    "Nocturnal.md",
+    "Cap.md",
+    "Juiceshop.md",
+    "Final 470.md",
+    "450 Final Feedback.md",
+    "PNPT/Movement.md",
+    "Command_Injections_Module_Cheat_Sheet.pdf",
+    "File Transferring.md",
+    "Terraform.md",
+    "IAM.md",
+    "teton.md",
+    "PNPT/Active Directory Security.md",
     "Untitled 1.md",
     "Active_Directory_Enumeration_Attacks_Module_Cheat_Sheet.pdf",
     "Untitled.md",
-    "PNPT/Tradecraft.md",
-    "Untitled 2.md",
     "picklerick.md",
-    "IAM.md",
-    "Pasted image 20250617223840.png",
-    "Pasted image 20250604155036.png",
-    "File Transferring.md",
-    "PNPT/PEH/WEB ATTACKS.md",
     "XSS.md",
-    "Pasted image 20250603093853.png",
-    "Pasted image 20250603093610.png",
     "README.md",
     "PNPT/PEH/Heath Subdomain Script.md",
     "PNPT/PEH/capstone/Butler.md",
     "Untitled 6.md",
     "Cross_Site_Scripting_Xss_Module_Cheat_Sheet.pdf",
-    "PNPT/PEH/Recon.md",
-    "Untitled 5.md",
-    "Untitled 4.md",
-    "Untitled 3.md",
-    "PNPT SQLi Challenge.md",
-    "Pasted image 20250515193029.png",
-    "Pasted image 20250515193009.png",
     "Sqlmap_Essentials_Module_Cheat_Sheet.pdf",
-    "Pasted image 20250515150317.png",
-    "Other Boxes/Silver Platter.md",
-    "dsadas.md",
-    "Pasted image 20250513125624.png",
-    "Pasted image 20250513125617.png",
-    "Pasted image 20250513110359.png",
     "Pivoting_Tunneling_And_Port_Forwarding_Module_Cheat_Sheet.pdf",
     "cheatsheet-using-crackmapexec.pdf",
     "cheatsheet-using-the-metasploit-framework.pdf",
     "cheatsheet-sql-injection-fundamentals.pdf",
     "cheatsheet-file-inclusion.pdf",
-    "cheatsheet-file-transfers.pdf",
-    "Notes.md",
-    "Heath's Subdomain.md",
-    "Other Boxes"
+    "cheatsheet-file-transfers.pdf"
   ]
 }

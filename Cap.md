@@ -1,0 +1,9 @@
+![[Pasted image 20250724174613.png]]
+
+user.txt
+2d8f751dbc1a034f681e60736d915371
+
+
+![[Pasted image 20250725115905.png]]
+root.txt
+df4130a844f597424bbc8a3a15123469
